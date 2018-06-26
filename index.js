@@ -37,7 +37,7 @@ var api = new ParseServer({
       // Your API key from mailgun.com
       apiKey: process.env.MAILGUN_API_KEY || 'key-mykey',
     }
-  }
+  },
   
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
