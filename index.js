@@ -33,7 +33,7 @@ var api = new ParseServer({
       // The address that your emails come from
       fromAddress: 'parse@example.com',
       // Your domain from mailgun.com
-      domain: process.MAILGUN_DOMAIN || 'example.com',
+      domain: process.env.MAILGUN_DOMAIN || 'example.com',
       // Your API key from mailgun.com
       apiKey: process.env.MAILGUN_API_KEY || 'key-mykey',
     }
