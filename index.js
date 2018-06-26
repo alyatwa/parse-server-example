@@ -28,7 +28,7 @@ var api = new ParseServer({
   appName: 'Parse App',
   // The email adapter
   emailAdapter: {
-     module:'parse-server-mailjet-adapter',
+     module:'@parse/parse-server-mailjet-adapter',
     options: {
       // The API key from your Mailjet account
       apiKey: process.env.YOUR_MAILJET_API_KEY,
