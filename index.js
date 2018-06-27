@@ -31,7 +31,7 @@ var api = new ParseServer({
   // The email adapter
   emailAdapter: SimpleSendGridAdapter({
     apiKey: process.env.SENDGRID_API_KEY,
-    fromAddress: 'ali@gmail.com',
+    fromAddress: process.env.fromAddress,
   })
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
