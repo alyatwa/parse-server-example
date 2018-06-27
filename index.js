@@ -60,7 +60,7 @@ const dashboard = new ParseDashboard( {
       'pass': process.env.PARSE_DASHBOARD_ADMIN_PASSWORD
     }
   ]
-}, true )
+}, {allowInsecureHTTP: true} );
 
 
 app.use( process.env.PARSE_MOUNT, api )
