@@ -3,6 +3,7 @@
 
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
+var ParseDashboard = require( 'parse-dashboard' )
 var path = require('path');
 
 var SimpleSendGridAdapter = require('parse-server-sendgrid-adapter');
@@ -26,7 +27,7 @@ var api = new ParseServer({
   // Set the mount path as it is in serverURL
   publicServerURL: process.env.SERVER_URL || 'https://example.com/parse',
   // Your apps name. This will appear in the subject and body of the emails that are sent.
-  appName: 'Parse App',
+  appName: process.env.APP_NAME,
   // The email adapter
   emailAdapter: SimpleSendGridAdapter({
     apiKey: process.env.SENDGRID_API_KEY,
@@ -42,14 +43,42 @@ var app = express();
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
+
+const dashboard = new ParseDashboard( {
+  "allowInsecureHTTP": true,
+  'apps': [
+    {
+      'serverURL': process.env.SERVER_URL,
+      'appName': process.env.APP_NAME,
+      'appId': process.env.APP_ID,
+      'masterKey': process.env.MASTER_KEY
+    }
+  ],
+  'users': [
+    {
+      'user': process.env.PARSE_DASHBOARD_ADMIN_USERNAME,
+      'pass': process.env.PARSE_DASHBOARD_ADMIN_PASSWORD
+    }
+  ]
+}, true )
+
+
+app.use( process.env.PARSE_MOUNT, api )
+// Parse Dashboard   /dashboard
+app.use( process.env.PARSE_DASHBOARD_MOUNT, dashboard )
+
+
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
-app.get('/', function(req, res) {
-  res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
-});
+// render configuration information for at root
+app.get( '/', function( req, res ) {
+  res.status(200).json( {
+    'appName': process.env.APP_NAME,
+  } )
+} )
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app
