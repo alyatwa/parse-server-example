@@ -74,7 +74,7 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     query.equalTo('userid', {
       __type: 'Pointer',
       className: '_User',
-      objectId: user.id
+      objectId: request.object.id
     });
    
     query.first({
