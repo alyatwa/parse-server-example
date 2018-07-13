@@ -20,14 +20,14 @@ Parse.Cloud.afterDelete('Records', (request) => {
 });
 Parse.Cloud.afterSave('Records', function (req) {
     console.log('[afterSave called]: ' + JSON.stringify(req.object));
-    console.log('[userid]: ' + req.object.receiverID);
+    console.log('[userid]: ' + req.object.get('receiverID'));
     if (!req.object.existed()) {
         var record = req.object;
         var acl = new Parse.ACL();
         acl.setPublicReadAccess(false);
         acl.setPublicWriteAccess(false);
-        acl.setReadAccess(record.receiverID, true);
-        acl.setWriteAccess(record.receiverID, true);
+        acl.setReadAccess(record.get('receiverID'), true);
+        acl.setWriteAccess(record.get('receiverID'), true);
         record.setACL(acl);
         record.save(null).then(function (s) {
             console.log('[afterSave succeeded]: ' + JSON.stringify(s));
