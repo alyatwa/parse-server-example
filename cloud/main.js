@@ -18,3 +18,20 @@ Parse.Cloud.afterDelete('Records', (request) => {
         });
 
 });
+Parse.Cloud.afterSave('Records', function (req) {
+    console.log('[afterSave called]: ' + JSON.stringify(req.object));
+    if (!req.object.existed()) {
+        var record = req.object;
+        var acl = new Parse.ACL();
+        acl.setPublicReadAccess(false);
+        acl.setPublicWriteAccess(false);
+        record.setACL(acl);
+        request.object.save(null, {
+            useMasterKey: true
+        }).then(function (s) {
+            console.log('[afterSave succeeded]: ' + JSON.stringify(s));
+        }, function (e) {
+            console.log('[afterSave failed]: ' + JSON.stringify(e));
+        })
+    }
+});
