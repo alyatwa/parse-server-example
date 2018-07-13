@@ -70,8 +70,13 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
   } else {
       console.log('======  in else ---------');
     var publicUser = Parse.Object.extend("PublicUser");
-    var query = new Parse.Query(publicUser);
-    query.equalTo("userid", request.object.id);
+    var query = new Parse.Query('publicUser');
+    query.equalTo('userid', {
+      __type: 'Pointer',
+      className: '_User',
+      objectId: user.id
+    });
+   
     query.first({
     success: function(object) {
       if (request.object.get('img')) {
