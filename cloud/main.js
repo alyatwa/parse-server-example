@@ -36,7 +36,7 @@ Parse.Cloud.afterSave('Records', function (req) {
 Parse.Cloud.afterSave(Parse.User, function(request) {
   if (!request.object.existed()) {
   var user = request.object;
-  var acl = new Parse.ACL();
+  var acl = new Parse.ACL(user);
   acl.setPublicReadAccess(false);
   user.setACL(acl);
     user.save({}, { useMasterKey: true }).then(function(s) {
