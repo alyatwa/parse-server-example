@@ -6,7 +6,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
     // code here
     console.log('*******: ', request)
 
-    var record = new Parse.Query(Parse.Records);
+    var record = new Parse.Query('Records');
     var id = request.ParseObject.id;
     record.equalTo("objectId", id).first().then(function (record) {
         var file = record.get("file").url();
