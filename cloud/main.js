@@ -3,9 +3,6 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 Parse.Cloud.afterDelete('Records', (request) => {
-    // code here
-    
-
     var file = request.object.get("file").url();
     console.log('*******id: ', file)
         Parse.Cloud.httpRequest({
@@ -16,8 +13,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
                 "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
             }
         });
-
 });
+
 Parse.Cloud.afterSave('Records', function (req) {
     console.log('[afterSave called]: ' + JSON.stringify(req.object));
     console.log('[userid]: ' + req.object.get('receiverID'));
@@ -36,3 +33,22 @@ Parse.Cloud.afterSave('Records', function (req) {
         })
     }
 });
+Parse.Cloud.afterSave(Parse.User, function(request) {
+  if (!request.object.existed()) {
+  var user = request.object;
+  var acl = new Parse.ACL();
+  acl.setPublicReadAccess(false);
+  user.setACL(acl);
+  user.save();
+  console.log('#User after save#');
+    var PublicUser = Parse.Object.extend("PublicUser");
+    var acel = new Parse.ACL();
+    acel.setPublicReadAccess(true);
+    acel.setPublicWriteAccess(false);
+    PublicUser.setACL(acel);
+    PublicUser.set({
+      'username': request.object.username,
+      'id': request.object.objectId,
+    })
+  }
+})
