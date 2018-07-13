@@ -43,9 +43,9 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
       console.log('[===afterSave succeeded]: ' + user.id);
     
     //console.log('#User after save#');
-    var publicUser = Parse.Object.extend("PublicUser");
-    var PublicUser = new publicUser();
-    var acel = new Parse.ACL();
+    let publicUser = Parse.Object.extend("PublicUser");
+    let PublicUser = new publicUser();
+    let acel = new Parse.ACL();
     acel.setPublicReadAccess(true);
     acel.setPublicWriteAccess(false);
     acel.setWriteAccess(user.id,true);
@@ -65,5 +65,19 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     }, function(e) {
       console.log('[===afterSave failed]: '+ JSON.stringify(e));
     })
+  } else {
+    var publicUser = Parse.Object.extend("PublicUser");
+    var PublicUser = new publicUser();
+    if (request.object.get('img')) {
+      PublicUser.set('img', request.object.get('img'))
+    }
+    PublicUser.set('username', request.object.get('username'))
+      PublicUser.save().then(function(s) {
+      console.log('user saved public')
+      }, function(e) {
+      console.log('@@error'+ JSON.stringify(e));
+    });
+    
+    
   }
 })
