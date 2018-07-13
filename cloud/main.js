@@ -34,7 +34,9 @@ Parse.Cloud.afterSave('Records', function (req) {
     }
 });
 Parse.Cloud.afterSave(Parse.User, function(request) {
+    console.log('====== before if ---------');
   if (!request.object.existed()) {
+       console.log('======  in if ---------');
   var user = request.object;
   var acl = new Parse.ACL(user);
   acl.setPublicReadAccess(false);
@@ -66,7 +68,8 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
       console.log('[===afterSave failed]: '+ JSON.stringify(e));
     })
   } else {
-    var publicUser = Parse.Object.extend("PublicUser");
+      console.log('======  in else ---------');
+    /*var publicUser = Parse.Object.extend("PublicUser");
     var PublicUser = new publicUser();
     if (request.object.get('img')) {
       PublicUser.set('img', request.object.get('img'))
@@ -76,7 +79,7 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
       console.log('user saved public')
       }, function(e) {
       console.log('@@error'+ JSON.stringify(e));
-    });
+    });*/
     
     
   }
