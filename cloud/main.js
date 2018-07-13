@@ -69,8 +69,8 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     })
   } else {
       console.log('======  in else ---------',  request.object.id);
-    
-    var query = Parse.Query('PublicUser');
+    var userpub = Parse.Object.extend("PublicUser");
+    var query = Parse.Query(userpub);
     query.equalTo('userid', {
       __type: 'Pointer',
       className: '_User',
