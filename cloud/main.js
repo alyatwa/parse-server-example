@@ -26,7 +26,7 @@ Parse.Cloud.afterSave('Records', function (req) {
         acl.setPublicReadAccess(false);
         acl.setPublicWriteAccess(false);
         record.setACL(acl);
-        request.object.save(null, {
+        record.save(null, {
             useMasterKey: true
         }).then(function (s) {
             console.log('[afterSave succeeded]: ' + JSON.stringify(s));
