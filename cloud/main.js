@@ -30,7 +30,7 @@ Parse.Cloud.afterSave('Records', function (req) {
             console.log('[afterSave succeeded]: ' + JSON.stringify(s));
         }, function (e) {
             console.log('[afterSave failed]: ' + JSON.stringify(e));
-        })
+        }) 
     }
 });
 Parse.Cloud.afterSave(Parse.User, function(request) {
@@ -68,9 +68,9 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
       console.log('[===afterSave failed]: '+ JSON.stringify(e));
     })
   } else {
-      console.log('======  in else ---------');
-    var publicUser = Parse.Object.extend("PublicUser");
-    var query = new Parse.Query('PublicUser');
+      console.log('======  in else ---------',  request.object.id);
+    
+    var query = Parse.Query('PublicUser');
     query.equalTo('userid', {
       __type: 'Pointer',
       className: '_User',
