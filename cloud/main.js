@@ -72,8 +72,8 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     var userpub = Parse.Object.extend("PublicUser");
     //query.equalTo('card', new Parse.Object('Tools', { id: id }));
     var Parent = Parse.Object.extend('PublicUser'); // or whatever you call the class
-    const query = new Parse.Query("userid").equalsTo('id', new Parent({id: request.object.id}))
-
+   // const query = new Parse.Query("userid").equalsTo('id', new Parent({id: request.object.id}))
+var query = new Parse.Query('PublicUser').equalTo('userid', new Parse.Object('objectId', { id: request.object.id }))
 
     /*var query = Parse.Query(userpub);
     query.equalTo('userid', {
