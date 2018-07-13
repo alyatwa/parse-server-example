@@ -3,11 +3,9 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 Parse.Cloud.afterDelete('Records', (request) => {
-    // code here
-    console.log('*******: ', request)
-
     var record = new Parse.Query('Records');
-    var id = request.object.ParseObject.id;
+    var id = request.object.get('sender');
+    console.log('*******id: ', id)
     record.equalTo("objectId", id).first().then(function (record) {
         var file = record.get("file").url();
         Parse.Cloud.httpRequest({
@@ -20,4 +18,4 @@ Parse.Cloud.afterDelete('Records', (request) => {
         });
     });
 
-})
+});
