@@ -41,7 +41,8 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
   user.setACL(acl);
   user.save();
   console.log('#User after save#');
-    var PublicUser = Parse.Object.extend("PublicUser");
+    var publicUser = Parse.Object.extend("PublicUser");
+    var PublicUser = new publicUser();
     var acel = new Parse.ACL();
     acel.setPublicReadAccess(true);
     acel.setPublicWriteAccess(false);
