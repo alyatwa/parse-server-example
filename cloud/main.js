@@ -69,18 +69,25 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     })
   } else {
       console.log('======  in else ---------');
-    /*var publicUser = Parse.Object.extend("PublicUser");
-    var PublicUser = new publicUser();
-    if (request.object.get('img')) {
-      PublicUser.set('img', request.object.get('img'))
+    var publicUser = Parse.Object.extend("PublicUser");
+    var query = new Parse.Query(publicUser);
+    query.equalTo("userid", request.object.id);
+    query.first({
+    success: function(object) {
+      if (request.object.get('img')) {
+    object.set('img', request.object.get('img'))
     }
-    PublicUser.set('username', request.object.get('username'))
-      PublicUser.save().then(function(s) {
-      console.log('user saved public')
+    object.set('username', request.object.get('username'));
+      object.save().then(function(s) {
+      console.log('user updated public')
       }, function(e) {
-      console.log('@@error'+ JSON.stringify(e));
-    });*/
-    
+      console.log('@@error update'+ JSON.stringify(e));
+    });
+  },
+  error: function(error) {
+    alert("Error query: " + error.code + " " + error.message);
+  }
+});
     
   }
 })
