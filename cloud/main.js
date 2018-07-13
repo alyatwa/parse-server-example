@@ -53,7 +53,7 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     PublicUser.setACL(acel);
     PublicUser.set({
       'username': s.get('username'),
-      'id': user.id
+      'id': [user.id]
     })
       PublicUser.save().then(function(s) {
       console.log('user saved public')
