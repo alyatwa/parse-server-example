@@ -3,11 +3,11 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 Parse.Cloud.afterDelete('Records', (request) => {
-    var record = new Parse.Query('Records');
-    var id = request.object.get('sender');
-    console.log('*******id: ', id)
-    record.equalTo("objectId", id).first().then(function (record) {
-        var file = record.get("file").url();
+    // code here
+    
+
+    var url = request.object.get("file").url();
+    console.log('*******id: ', url)
         Parse.Cloud.httpRequest({
             method: 'DELETE',
             url: file.substring(file.lastIndexOf("/") + 1),
@@ -16,6 +16,5 @@ Parse.Cloud.afterDelete('Records', (request) => {
                 "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
             }
         });
-    });
 
 });
