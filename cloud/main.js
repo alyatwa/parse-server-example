@@ -6,8 +6,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
     // code here
     
 
-    var url = request.object.get("file").url();
-    console.log('*******id: ', url)
+    var file = request.object.get("file").url();
+    console.log('*******id: ', file)
         Parse.Cloud.httpRequest({
             method: 'DELETE',
             url: file.substring(file.lastIndexOf("/") + 1),
