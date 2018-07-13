@@ -40,9 +40,9 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
   acl.setPublicReadAccess(false);
   user.setACL(acl);
     user.save({}, { useMasterKey: true }).then(function(s) {
-      console.log('[===afterSave succeeded]: '+ '@'+ s.get('username')+'@' + JSON.stringify(s));
+      console.log('[===afterSave succeeded]: '+ '@'+ s.get('username')+'@' /*+ JSON.stringify(s)*/);
     
-    console.log('#User after save#');
+    //console.log('#User after save#');
     var publicUser = Parse.Object.extend("PublicUser");
     var PublicUser = new publicUser();
     var acel = new Parse.ACL();
@@ -53,6 +53,12 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
       'username': request.object.username,
       'id': request.object.objectId,
     })
+      PublicUser.save().then(function(s) {
+      console.log('user saved public')
+      }, function(e) {
+      console.log('@@error'+ JSON.stringify(e));
+    });
+      
       
     }, function(e) {
       console.log('[===afterSave failed]: '+ JSON.stringify(e));
