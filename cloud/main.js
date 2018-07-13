@@ -70,7 +70,7 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
   } else {
       console.log('======  in else ---------');
     var publicUser = Parse.Object.extend("PublicUser");
-    var query = new Parse.Query('publicUser');
+    var query = new Parse.Query('PublicUser');
     query.equalTo('userid', {
       __type: 'Pointer',
       className: '_User',
@@ -81,7 +81,7 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     success: function(object) {
       if (request.object.get('img')) {
     object.set('img', request.object.get('img'))
-    }
+            }
     object.set('username', request.object.get('username'));
       object.save().then(function(s) {
       console.log('user updated public')
