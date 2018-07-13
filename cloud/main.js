@@ -20,7 +20,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
 });
 Parse.Cloud.afterSave('Records', function (req) {
     console.log('[afterSave called]: ' + JSON.stringify(req.object));
-    console.log('[userid]: ' + record.receiverID);
+    console.log('[userid]: ' + req.object.receiverID);
     if (!req.object.existed()) {
         var record = req.object;
         var acl = new Parse.ACL();
