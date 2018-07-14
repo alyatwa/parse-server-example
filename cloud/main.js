@@ -19,8 +19,13 @@ Parse.Cloud.afterDelete('Records', (request) => {
             success: function (data) {
                 data.destroy({
                     sessionToken: request.user.getSessionToken()
+                }).then(function (s) {
+                    console.log('destroying private record data', s);
+                }, function (e) {
+                     console.log('error destroying private record data', e);
                 });
-                console.log('destroying private record data');
+;
+                
                 
             }
         });
