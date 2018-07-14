@@ -92,3 +92,17 @@ query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId":
     
   }
 })
+
+
+// remove user public data when user deleted
+Parse.Cloud.afterDelete(Parse.User, (request) => {
+  var user = request.object.id;
+  var query = new Parse.Query('PublicUser');  
+  query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId": user });  
+  query.first({
+  success: function(data) {
+  data.destroy({useMasterKey:true});
+  }
+  });
+  
+})
