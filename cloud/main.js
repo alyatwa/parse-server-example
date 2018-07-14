@@ -47,11 +47,12 @@ Parse.Cloud.afterSave('Records', function (req) {
        PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
        console.log('private record saved: ' + JSON.stringify(s));
          
-          recordset.set({'sender': s.get('objectId')});
-          recordset.save();
-         
-         
-         
+    var query = new Parse.Query('Records');  
+    query.equalTo('recordId', s.get('recordId') });  
+    query.first({ success: function(data) {
+          data.set({'sender': s.get('objectId')});
+          data.save({}, { useMasterKey: true });
+                 }):
        });
     
     
