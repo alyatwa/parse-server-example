@@ -150,7 +150,7 @@ Parse.Cloud.afterSave(Parse.User, function (request) {
     } else {
         // console.log('======  in else ---------',  request.object.id);
         var query = new Parse.Query('PublicUser');
-        query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId": request.object.id });
+        query.equalTo('userid', request.object.id);
         query.first({
             success: function (data) {
                 var object = data;
@@ -178,7 +178,7 @@ Parse.Cloud.afterSave(Parse.User, function (request) {
 Parse.Cloud.afterDelete(Parse.User, (request) => {
     var user = request.object.id;
     var query = new Parse.Query('PublicUser');
-    query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId": user });
+    query.equalTo('userId', user);
     query.first({
         success: function (data) {
             data.destroy({ useMasterKey: true });
