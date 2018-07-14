@@ -13,6 +13,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
             "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
         }
     });
+        console.log('record.id *******************', record.id);
+        
         var query = new Parse.Query('PrivateRecord');
         query.equalTo('recordid', {
             "__type": "Pointer",
