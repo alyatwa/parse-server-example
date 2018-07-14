@@ -66,7 +66,7 @@ Parse.Cloud.afterSave('Records', function (req) {
             query.equalTo('objectId',receiver);
             query.find({ useMasterKey: true}).then(function (res) {
             let user = res[0];
-            user.increment("new");
+            user.increment("new", 1);
             user.save({}, { useMasterKey: true }).then(function (s) {
                 console.log('user increment new msg success', s);
                 
