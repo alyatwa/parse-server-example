@@ -5,7 +5,7 @@ Parse.Cloud.define('hello', function (req, res) {
 Parse.Cloud.afterDelete('Records', (request) => {
        var record = request.object;
         console.log('record.id *******************', record.id);
-        
+        //https://microphoneserver.herokuapp.com/parse/files/microphone/2ea48c19325a95764724de96766de833_recorder2.mp3
         var query = new Parse.Query('PrivateRecord');
         query.equalTo('recordid', {
             "__type": "Pointer",
@@ -25,9 +25,10 @@ Parse.Cloud.afterDelete('Records', (request) => {
         });
    
     var file = request.object.get("file").url();
+    var real = document.location.protocol +"//"+ document.location.hostname+"/parse/files/"+file.substring(file.lastIndexOf("/") + 1);
     Parse.Cloud.httpRequest({
         method: 'DELETE',
-        url: file,
+        url: real,
         headers: {
             "X-Parse-Application-Id": process.env.APP_ID,
             "X-Parse-Master-Key": process.env.MASTER_KEY
