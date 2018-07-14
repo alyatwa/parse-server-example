@@ -17,8 +17,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
         query.equalTo('recordId', record.id);
         query.first({
             success: function (data) {
-                data.destroy(null, {
-                    sessionToken: request.user.getSessionToken()
+                data.destroy({
+                    useMasterKey: true
                 });
                 console.log('destroying private record data');
                 
