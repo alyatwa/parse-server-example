@@ -13,20 +13,17 @@ Parse.Cloud.afterDelete('Records', (request) => {
             "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
         }
     });
-        let query = new Parse.Query('PrivateRecord');
-        query.equalTo('recordId', record.id);
+        var query = new Parse.Query('PrivateRecord');
+        query.equalTo('recordid', {
+            "__type": "Pointer",
+            "className": "Records",
+            "objectId": record.id
+        });
         query.first({
             success: function (data) {
                 data.destroy({
-                        useMasterKey: true
-                    }).then(function (s) {
-                    console.log('destroying private record data', s);
-                }, function (e) {
-                     console.log('error destroying private record data', e);
+                    useMasterKey: true
                 });
-;
-                
-                
             }
         });
 });
@@ -71,7 +68,12 @@ Parse.Cloud.afterSave('Records', function (req) {
                 'receiverId': req.object.get('receiverID'),
                 'sender': username,
                 'recordId': req.object.id,
-                'file': req.object.get('file')
+                'file': req.object.get('file'),
+                'recordid': {
+                    "__type": "Pointer",
+                    "className": "Records",
+                    "objectId": req.object.id
+                },
             });
 
             PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
