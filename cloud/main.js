@@ -69,21 +69,11 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
     })
   } else {
       console.log('======  in else ---------',  request.object.id);
-    var userpub = Parse.Object.extend("PublicUser");
-    //query.equalTo('card', new Parse.Object('Tools', { id: id }));
-    var Parent = Parse.Object.extend('PublicUser'); // or whatever you call the class
-   // const query = new Parse.Query("userid").equalsTo('id', new Parent({id: request.object.id}))
-var query = new Parse.Query('PublicUser').equalTo('userid', new Parse.Object('objectId', { id: request.object.id }))
-
-    /*var query = Parse.Query(userpub);
-    query.equalTo('userid', {
-      __type: 'Pointer',
-      className: '_User',
-      id: request.object.id
-    });*/
-   
-    query.first({
+var query = new Parse.Query('PublicUser');  
+query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId": request.object.id });  
+    query.find({
     success: function(object) {
+      console.log('find--->',object);
       if (request.object.get('img')) {
     object.set('img', request.object.get('img'))
             }
