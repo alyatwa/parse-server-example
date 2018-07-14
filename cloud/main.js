@@ -79,8 +79,8 @@ query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId":
     object.set('img', request.object.get('img'))
             }
     object.set('username', request.object.get('username'));
-      object.save().then(function(s) {
-      console.log('user updated public')
+      object.save({}, { useMasterKey: true }).then(function(s) {
+      console.log('user updated public', s)
       }, function(e) {
       console.log('@@error update'+ JSON.stringify(e));
     });
