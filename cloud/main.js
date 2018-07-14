@@ -27,16 +27,16 @@ Parse.Cloud.afterDelete('Records', (request) => {
     let file = request.object.get("file").url();
     Parse.Cloud.httpRequest({
         method: 'DELETE',
-        url: file.substring(file.lastIndexOf("/") + 1),
+        url: file,
         headers: {
             "X-Parse-Application-Id": "${process.env.APP_ID}",
             "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
         }
     }).then(function(httpResponse) {
-      console.log(httpResponse);
+      console.log('del file success ',httpResponse);
       res.end(httpResponse.text);
     }, function(err) {
-      console.log(err);
+      console.log('error to del file ',err);
       res.end(err);
     });;
     
