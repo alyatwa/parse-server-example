@@ -11,8 +11,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
         query.find({ useMasterKey: true}).then(function (res) {
                 var data = res[0];
                 console.log('private record found  *******************', record.id);
-                console.log('data of found obj', data);
-                data.destroy({
+                console.log('data of found obj', res);
+                res.destroy({
                     useMasterKey: true
                 }).then(function (s) {
                     console.log('[afterDelete succeeded]: ' + JSON.stringify(s));
