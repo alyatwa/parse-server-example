@@ -22,7 +22,7 @@ Parse.Cloud.afterSave('PrivateRecord', function (req) {
     query.first({
         success: function (data) {
             data.set({ 'sender': s.get('objectId') });
-            data.save({}, { useMasterKey: true });
+            data.save();
             console.log('#Record after save#', data);
         },
         error: function (e) {
