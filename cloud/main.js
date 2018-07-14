@@ -3,17 +3,16 @@ Parse.Cloud.define('hello', function (req, res) {
     res.success('Hi');
 });
 Parse.Cloud.afterDelete('Records', (request) => {
-       var record = request.object;
+        var record = request.object;
         console.log('record.id *******************', record.id);
-        //https://microphoneserver.herokuapp.com/parse/files/microphone/2ea48c19325a95764724de96766de833_recorder2.mp3
+          
         var query = new Parse.Query('PrivateRecord');
-        query.equalTo('recordid', {
-            "__type": "Pointer",
-            "className": "Records",
-            "objectId": record.id
-        });
+        query.equalTo('recordId',record.id);
         query.first({
+            
             success: function (data) {
+                console.log('private record found  *******************', record.id);
+                console.log('data of found obj', data);
                 data.destroy({
                     useMasterKey: true
                 }).then(function (s) {
@@ -34,12 +33,30 @@ Parse.Cloud.afterDelete('Records', (request) => {
             "X-Parse-Master-Key": process.env.MASTER_KEY
         }
     }).then(function(httpResponse) {
-      console.log('del file success ',httpResponse);
+      console.log('del file success ');
+        /****************************/
+          Parse.Cloud.httpRequest({
+        method: 'DELETE',
+        url: process.env.SERVER_URL + '/classes/PrivateRecord/'+data.id,
+        headers: {
+            "X-Parse-Application-Id": process.env.APP_ID,
+            "X-Parse-Master-Key": process.env.MASTER_KEY
+        }
+    }).then(function(httpResponse) {
+      console.log('del obj success ');
+      res.end(httpResponse.text);
+    }, function(err) {
+      console.log('error to del obj ',err);
+      res.end(err);
+    });
+        
+        
+        /****************************/
       res.end(httpResponse.text);
     }, function(err) {
       console.log('error to del file ',err);
       res.end(err);
-    });;
+    });
     
 });
 
