@@ -28,7 +28,6 @@ var api = new ParseServer({
   publicServerURL: process.env.SERVER_URL || 'https://example.com/parse',
   // Your apps name. This will appear in the subject and body of the emails that are sent.
   appName: process.env.APP_NAME,
-  verbose: true,
   // The email adapter
   emailAdapter: SimpleSendGridAdapter({
     apiKey: process.env.SENDGRID_API_KEY,
