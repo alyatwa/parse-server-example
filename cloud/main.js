@@ -19,12 +19,12 @@ Parse.Cloud.afterSave('PrivateRecord', function (req) {
     let query = new Parse.Query('Records');
     let s = req.object;
     console.log('recordId', s.get('recordId'));
-    console.log('objectId', s.get('objectId'));
+    console.log('objectId', s.id);
     
     query.equalTo('objectId', s.get('recordId'));
     query.first({
         success: function (data) {
-            data.set({ 'sender': s.get('objectId') });
+            data.set({ 'sender': s.id });
             data.save();
             console.log('#Record after save#', data);
         },
