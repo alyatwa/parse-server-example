@@ -25,7 +25,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
         });
    
     var file = request.object.get("file").url();
-    var real = document.location.protocol +"//"+ document.location.hostname+"/parse/files/"+file.substring(file.lastIndexOf("/") + 1);
+    var real = process.env.SERVER_URL+"/files/"+file.substring(file.lastIndexOf("/") + 1);
     Parse.Cloud.httpRequest({
         method: 'DELETE',
         url: real,
