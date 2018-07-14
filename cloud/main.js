@@ -8,9 +8,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
           
         var query = new Parse.Query('PrivateRecord');
         query.equalTo('recordId',record.id);
-        query.find({ useMasterKey: true}).then(
-            
-            function (res) {
+        query.find({ useMasterKey: true}).then(function (res) {
                 var data = res[0];
                 console.log('private record found  *******************', record.id);
                 console.log('data of found obj', data);
@@ -21,9 +19,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
                 }, function (e) {
                     console.log('[afterDelete failed]: ' + JSON.stringify(e));
                 });
-            }
-            
-        });
+            });
    
     var file = request.object.get("file").url();
     var real = process.env.SERVER_URL+"/files/"+file.substring(file.lastIndexOf("/") + 1);
@@ -46,10 +42,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
     
 });
 
-Parse.Cloud.afterSave('PrivateRecord', function (req) {
 
 
-});
 Parse.Cloud.afterSave('Records', function (req) {
     //console.log('===afterSave called: ===' + JSON.stringify(req.object));
     //console.log('[userid]: ' + req.object.get('receiverID'));
