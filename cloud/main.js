@@ -16,7 +16,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
 });
 
 Parse.Cloud.afterSave('Records', function (req) {
-    console.log('===afterSave called: ===' + JSON.stringify(req.object));
+    //console.log('===afterSave called: ===' + JSON.stringify(req.object));
     //console.log('[userid]: ' + req.object.get('receiverID'));
     if (!req.object.existed()) {
         var record = req.object;
@@ -47,8 +47,7 @@ Parse.Cloud.afterSave('Records', function (req) {
             });
 
             PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
-
-                //console.log('private record saved: ' + JSON.stringify(s));
+                console.log('private record saved: ' + s.get('recordId'));
                 let query = new Parse.Query('Records');
                 query.equalTo('objectId', s.get('recordId'));
                 query.first({
