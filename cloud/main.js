@@ -4,20 +4,20 @@ Parse.Cloud.define('hello', function (req, res) {
 });
 Parse.Cloud.afterDelete('Records', (request) => {
         var record = request.object;
-        console.log('record.id *******************', record.id);
+        //console.log('record.id *******************', record.id);
           
         var query = new Parse.Query('PrivateRecord');
         query.equalTo('recordId',record.id);
         query.find({ useMasterKey: true}).then(function (res) {
                 var data = res[0];
-                console.log('private record found  *******************', record.id);
-                console.log('data of found obj', res[0]);
+                //console.log('private record found  *******************', record.id);
+                //console.log('data of found obj', res[0]);
                 res[0].destroy({
                     useMasterKey: true
                 }).then(function (s) {
-                    console.log('[afterDelete succeeded]: ' + JSON.stringify(s));
+                  //  console.log('[afterDelete succeeded]: ' + JSON.stringify(s));
                 }, function (e) {
-                    console.log('[afterDelete failed]: ' + JSON.stringify(e));
+                  //  console.log('[afterDelete failed]: ' + JSON.stringify(e));
                 });
             });
    
@@ -60,7 +60,22 @@ Parse.Cloud.afterSave('Records', function (req) {
         record.save(null, {
                 sessionToken: req.user.getSessionToken()
             }).then(function (recordset) {
-
+            /****increment new for user****/
+            let receiver = req.object.get('receiverID');
+            let query = new Parse.Query('_User');
+            query.equalTo('objectId',receiver);
+            query.find({ useMasterKey: true}).then(function (res) {
+            let user = res[0];
+            user.increment("new", 1);
+            user.save({}, { useMasterKey: true }).then(function (s) {
+                console.log('user increment new msg success', s);
+                
+            },function (e) {
+                console.log('error increment', e);
+            });
+            });
+            
+            /****************************/
             // save sender data in private class
             let privaterecord = Parse.Object.extend("PrivateRecord");
             let PrivateRecord = new privaterecord();
@@ -90,7 +105,6 @@ Parse.Cloud.afterSave('Records', function (req) {
 
             PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
                 console.log('private record saved: ' + s.get('recordId'));
-           
                 //console.log('[afterSave succeeded]: ' + JSON.stringify(s));
             }, function (e) {
                 //console.log('[afterSave failed]: ' + JSON.stringify(e));
@@ -168,17 +182,27 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
         }
     });
 
-    if (request.object.get("file")) {
-        var file = request.object.get("file").url();
+    if (request.object.get("img")) {
+        var file = request.object.get("img").url();
+        var real = process.env.SERVER_URL+"/files/"+file.substring(file.lastIndexOf("/") + 1);
+       
         //console.log('profile img link for delete ', file)
         Parse.Cloud.httpRequest({
             method: 'DELETE',
-            url: file.substring(file.lastIndexOf("/") + 1),
+            url: real,
             headers: {
                 "X-Parse-Application-Id": "${process.env.APP_ID}",
                 "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
             }
-        });
+        }).then(function(httpResponse) {
+      console.log('del img profile success ');
+        /****************************/
+        /****************************/
+      res.end(httpResponse.text);
+    }, function(err) {
+      console.log('error to del img profile ',err);
+      res.end(err);
+    });;
     }
 
 })
