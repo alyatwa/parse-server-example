@@ -24,11 +24,32 @@ Parse.Cloud.afterSave('Records', function (req) {
         acl.setPublicReadAccess(false);
         acl.setPublicWriteAccess(false);
         acl.setRoleWriteAccess('app', true);
-        acl.setRoleWriteAccess('app', true);
+        acl.setRoleReadAccess('app', true);
         acl.setReadAccess(record.get('receiverID'), true);
         acl.setWriteAccess(record.get('receiverID'), true);
+        record.set({'sender', '#####'});
         record.setACL(acl);
         record.save(null).then(function (s) {
+    
+    // save sender data in private class
+    let privaterecord = Parse.Object.extend("PrivateRecord");
+    let PrivateRecord = new privaterecord();
+    let acel = new Parse.ACL();
+    acel.setPublicReadAccess(false);
+    acel.setPublicWriteAccess(false);
+    acel.setRoleWriteAccess('app', true);
+    acel.setRoleReadAccess('app', true);
+    PrivateRecord.setACL(acel);
+    PrivateRecord.set({'receiverId': req.object.get('receiverID'),
+                       'sender': req.object.get('sender'),
+                       'recordId': req.object.id,
+                       'file': req.object.get('file')
+                      });
+       PrivateRecord.save().then(function (s) {
+       console.log('private record saved: ' + JSON.stringify(s));
+       });
+    
+    
             console.log('[afterSave succeeded]: ' + JSON.stringify(s));
         }, function (e) {
             console.log('[afterSave failed]: ' + JSON.stringify(e));
