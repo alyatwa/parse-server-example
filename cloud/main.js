@@ -72,7 +72,8 @@ Parse.Cloud.afterSave(Parse.User, function(request) {
 var query = new Parse.Query('PublicUser');  
 query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId": request.object.id });  
     query.find({
-    success: function(object) {
+    success: function(data) {
+      var object = data[0];
       console.log('find--->',JSON.stringify(object));
       if (request.object.get('img')) {
     object.set('img', request.object.get('img'))
