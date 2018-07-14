@@ -73,7 +73,7 @@ var query = new Parse.Query('PublicUser');
 query.equalTo('userid', { "__type": "Pointer", "className": "_User", "objectId": request.object.id });  
     query.find({
     success: function(object) {
-      console.log('find--->',object);
+      console.log('find--->',JSON.stringify(object));
       if (request.object.get('img')) {
     object.set('img', request.object.get('img'))
             }
