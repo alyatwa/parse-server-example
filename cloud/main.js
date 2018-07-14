@@ -3,16 +3,7 @@ Parse.Cloud.define('hello', function (req, res) {
     res.success('Hi');
 });
 Parse.Cloud.afterDelete('Records', (request) => {
-    var record = request.object;
-    let file = request.object.get("file").url();
-    Parse.Cloud.httpRequest({
-        method: 'DELETE',
-        url: file.substring(file.lastIndexOf("/") + 1),
-        headers: {
-            "X-Parse-Application-Id": "${process.env.APP_ID}",
-            "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
-        }
-    });
+       var record = request.object;
         console.log('record.id *******************', record.id);
         
         var query = new Parse.Query('PrivateRecord');
@@ -32,6 +23,23 @@ Parse.Cloud.afterDelete('Records', (request) => {
                 });
             }
         });
+   
+    let file = request.object.get("file").url();
+    Parse.Cloud.httpRequest({
+        method: 'DELETE',
+        url: file.substring(file.lastIndexOf("/") + 1),
+        headers: {
+            "X-Parse-Application-Id": "${process.env.APP_ID}",
+            "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
+        }
+    }).then(function(httpResponse) {
+      console.log(httpResponse);
+      res.end(httpResponse.text);
+    }, function(err) {
+      console.log(err);
+      res.end(err);
+    });;
+    
 });
 
 Parse.Cloud.afterSave('PrivateRecord', function (req) {
