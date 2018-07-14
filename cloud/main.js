@@ -4,7 +4,7 @@ Parse.Cloud.define('hello', function (req, res) {
 });
 Parse.Cloud.afterDelete('Records', (request) => {
     var record = request.object;
-    var file = request.object.get("file").url();
+    let file = request.object.get("file").url();
     Parse.Cloud.httpRequest({
         method: 'DELETE',
         url: file.substring(file.lastIndexOf("/") + 1),
@@ -13,12 +13,12 @@ Parse.Cloud.afterDelete('Records', (request) => {
             "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
         }
     });
-        var query = new Parse.Query('PrivateRecord');
+        let query = new Parse.Query('PrivateRecord');
         query.equalTo('recordId', record.id);
         query.first({
             success: function (data) {
-                data.destroy({
-                    useMasterKey: true
+                data.destroy(null, {
+                    sessionToken: request.user.getSessionToken()
                 });
                 console.log('destroying private record data');
                 
@@ -43,7 +43,9 @@ Parse.Cloud.afterSave('Records', function (req) {
         acl.setReadAccess(record.get('receiverID'), true);
         acl.setWriteAccess(record.get('receiverID'), true);
         record.setACL(acl);
-        record.save(null).then(function (recordset) {
+        record.save(null, {
+                sessionToken: req.user.getSessionToken()
+            }).then(function (recordset) {
 
             // save sender data in private class
             let privaterecord = Parse.Object.extend("PrivateRecord");
