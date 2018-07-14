@@ -23,6 +23,8 @@ Parse.Cloud.afterSave('Records', function (req) {
         var acl = new Parse.ACL();
         acl.setPublicReadAccess(false);
         acl.setPublicWriteAccess(false);
+        acl.setRoleWriteAccess('app', true);
+        acl.setRoleWriteAccess('app', true);
         acl.setReadAccess(record.get('receiverID'), true);
         acl.setWriteAccess(record.get('receiverID'), true);
         record.setACL(acl);
