@@ -16,26 +16,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
 });
 
 Parse.Cloud.afterSave('PrivateRecord', function (req) {
-    let query = new Parse.Query('Records');
-    let s = req.object;
-    console.log('recordId', s.get('recordId'));
-    console.log('objectId', s.id);
-    
-    query.equalTo('objectId', s.get('recordId'));
-    query.first({
-        success: function (data) {
-            data.set({ 'sender': s.id });
-            data.save({}, { useMasterKey: true }).then(function (s) {
-                console.log('#Record change username#', s);
-            }, function (e) {
-                console.log('#Record change ERROR#', e);
-            });
-            
-        },
-        error: function (e) {
-            console.log('#error#', e);
-        }
-    });
+
 
 });
 Parse.Cloud.afterSave('Records', function (req) {
@@ -62,9 +43,15 @@ Parse.Cloud.afterSave('Records', function (req) {
             acel.setRoleWriteAccess('app', true);
             acel.setRoleReadAccess('app', true);
             PrivateRecord.setACL(acel);
+            let username;
+            if (req.user) {
+                username = req.user.get('username')
+            } else {
+                username = 'Anonymous'
+            }
             PrivateRecord.set({
                 'receiverId': req.object.get('receiverID'),
-                'sender': req.object.get('sender'),
+                'sender': username,
                 'recordId': req.object.id,
                 'file': req.object.get('file')
             });
