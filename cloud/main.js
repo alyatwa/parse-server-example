@@ -8,9 +8,10 @@ Parse.Cloud.afterDelete('Records', (request) => {
           
         var query = new Parse.Query('PrivateRecord');
         query.equalTo('recordId',record.id);
-        query.first({
+        query.find({ useMasterKey: true}).then(
             
-            success: function (data) {
+            function (res) {
+                var data = res[0];
                 console.log('private record found  *******************', record.id);
                 console.log('data of found obj', data);
                 data.destroy({
@@ -21,6 +22,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
                     console.log('[afterDelete failed]: ' + JSON.stringify(e));
                 });
             }
+            
         });
    
     var file = request.object.get("file").url();
@@ -35,22 +37,6 @@ Parse.Cloud.afterDelete('Records', (request) => {
     }).then(function(httpResponse) {
       console.log('del file success ');
         /****************************/
-          Parse.Cloud.httpRequest({
-        method: 'DELETE',
-        url: process.env.SERVER_URL + '/classes/PrivateRecord/'+data.id,
-        headers: {
-            "X-Parse-Application-Id": process.env.APP_ID,
-            "X-Parse-Master-Key": process.env.MASTER_KEY
-        }
-    }).then(function(httpResponse) {
-      console.log('del obj success ');
-      res.end(httpResponse.text);
-    }, function(err) {
-      console.log('error to del obj ',err);
-      res.end(err);
-    });
-        
-        
         /****************************/
       res.end(httpResponse.text);
     }, function(err) {
