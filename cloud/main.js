@@ -29,8 +29,8 @@ Parse.Cloud.afterDelete('Records', (request) => {
         method: 'DELETE',
         url: file,
         headers: {
-            "X-Parse-Application-Id": "${process.env.APP_ID}",
-            "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
+            "X-Parse-Application-Id": process.env.APP_ID,
+            "X-Parse-REST-API-Key": process.env.MASTER_KEY
         }
     }).then(function(httpResponse) {
       console.log('del file success ',httpResponse);
