@@ -44,7 +44,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
 
 
 
-Parse.Cloud.afterSave('Records', function (req) {
+Parse.Cloud.afterSave('Records', function (req, response) {
     //console.log('===afterSave called: ===' + JSON.stringify(req.object));
     //console.log('[userid]: ' + req.object.get('receiverID'));
     if (!req.object.existed()) {
@@ -63,15 +63,18 @@ Parse.Cloud.afterSave('Records', function (req) {
             /****increment new for user****/
             let receiver = req.object.get('receiverID');
             let query = new Parse.Query('_User');
+             console.log('receiver ###', receiver);
             query.equalTo('objectId',receiver);
             query.find({ useMasterKey: true}).then(function (res) {
+                 console.log('target user found ###', res);
             let user = res[0];
             user.increment("new", 1);
             user.save({}, { useMasterKey: true }).then(function (s) {
                 console.log('user increment new msg success', s);
-                
+                response.success();
             },function (e) {
                 console.log('error increment', e);
+                response.error();
             });
             });
             
