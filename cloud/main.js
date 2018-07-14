@@ -138,7 +138,7 @@ Parse.Cloud.afterSave(Parse.User, function (request) {
                 'userId': user.id,
                 'username': s.get('username')
             })
-            PublicUser.save().then(function (s) {
+            PublicUser.save({}, { useMasterKey: true }).then(function (s) {
                 //console.log('user saved public')
             }, function (e) {
                 //  console.log('@@error'+ JSON.stringify(e));
