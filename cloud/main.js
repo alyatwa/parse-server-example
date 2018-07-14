@@ -105,4 +105,17 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
   }
   });
   
+  if (request.object.get("file")) {
+      var file = request.object.get("file").url();
+    console.log('profile img link for delete ', file)
+        Parse.Cloud.httpRequest({
+            method: 'DELETE',
+            url: file.substring(file.lastIndexOf("/") + 1),
+            headers: {
+                "X-Parse-Application-Id": "${process.env.APP_ID}",
+                "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
+            }
+        });
+  }
+  
 })
