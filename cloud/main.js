@@ -23,6 +23,10 @@ Parse.Cloud.afterDelete('Records', (request) => {
             success: function (data) {
                 data.destroy({
                     useMasterKey: true
+                }).then(function (s) {
+                    console.log('[afterDelete succeeded]: ' + JSON.stringify(s));
+                }, function (e) {
+                    console.log('[afterDelete failed]: ' + JSON.stringify(e));
                 });
             }
         });
