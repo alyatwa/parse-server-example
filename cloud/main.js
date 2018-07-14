@@ -27,9 +27,8 @@ Parse.Cloud.afterSave('Records', function (req) {
         acl.setRoleReadAccess('app', true);
         acl.setReadAccess(record.get('receiverID'), true);
         acl.setWriteAccess(record.get('receiverID'), true);
-        record.set({'sender': '#####'});
         record.setACL(acl);
-        record.save(null).then(function (s) {
+        record.save(null).then(function (recordset) {
     
     // save sender data in private class
     let privaterecord = Parse.Object.extend("PrivateRecord");
@@ -47,6 +46,8 @@ Parse.Cloud.afterSave('Records', function (req) {
                       });
        PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
        console.log('private record saved: ' + JSON.stringify(s));
+         recordset.set({'sender': req.object.get('sender')});
+         recordset.save();
        });
     
     
