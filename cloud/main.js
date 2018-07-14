@@ -25,8 +25,12 @@ Parse.Cloud.afterSave('PrivateRecord', function (req) {
     query.first({
         success: function (data) {
             data.set({ 'sender': s.id });
-            data.save();
-            console.log('#Record after save#', data);
+            data.save({}, { useMasterKey: true }).then(function (s) {
+                console.log('#Record change username#', s);
+            }, function (e) {
+                console.log('#Record change ERROR#', e);
+            });
+            
         },
         error: function (e) {
             console.log('#error#', e);
