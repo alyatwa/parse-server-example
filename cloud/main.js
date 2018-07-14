@@ -18,6 +18,9 @@ Parse.Cloud.afterDelete('Records', (request) => {
 Parse.Cloud.afterSave('PrivateRecord', function (req) {
     let query = new Parse.Query('Records');
     let s = req.object;
+    console.log('recordId', s.get('recordId'));
+    console.log('objectId', s.get('objectId'));
+    
     query.equalTo('objectId', s.get('recordId'));
     query.first({
         success: function (data) {
