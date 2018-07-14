@@ -14,14 +14,13 @@ Parse.Cloud.afterDelete('Records', (request) => {
         }
     });
         let query = new Parse.Query('PrivateRecord');
-        console.log('record: ', record.id);
         query.equalTo('recordId', record.id);
         query.first({
             success: function (data) {
                 data.destroy({
-                    useMasterKey: true
+                    sessionToken: request.user.getSessionToken()
                 });
-                
+                console.log('destroying private record data');
                 
             }
         });
