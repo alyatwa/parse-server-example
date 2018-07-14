@@ -46,8 +46,8 @@ Parse.Cloud.afterSave('Records', function (req) {
                       });
        PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
        console.log('private record saved: ' + JSON.stringify(s));
-         recordset.set({'sender': req.object.get('sender')});
-         recordset.save();
+         req.object.set({'sender': req.object.get('sender')});
+         req.object.save();
        });
     
     
