@@ -150,7 +150,7 @@ Parse.Cloud.afterSave(Parse.User, function (request) {
     } else {
         // console.log('======  in else ---------',  request.object.id);
         var query = new Parse.Query('PublicUser');
-        query.equalTo('userid', request.object.id);
+        query.equalTo('userId', request.object.id);
         query.first({
             success: function (data) {
                 var object = data;
@@ -194,8 +194,8 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
             method: 'DELETE',
             url: real,
             headers: {
-                "X-Parse-Application-Id": "${process.env.APP_ID}",
-                "X-Parse-REST-API-Key": "${process.env.MASTER_KEY}"
+                "X-Parse-Application-Id": process.env.APP_ID,
+            "X-Parse-Master-Key": process.env.MASTER_KEY
             }
         }).then(function(httpResponse) {
       console.log('del img profile success ');
