@@ -73,7 +73,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
                 
       Parse.Cloud.httpRequest({
         method: 'POST',
-        url: 'https://fcm.googleapis.com/v1/projects/tstore-1525166128684/messages:send',
+        url: 'https://fcm.googleapis.com/fcm/send',
         headers: {
             "Content-Type": "application/json",
             "Authorization": "key="+process.env.FCM,
