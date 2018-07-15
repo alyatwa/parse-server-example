@@ -79,13 +79,13 @@ Parse.Cloud.afterSave('Records', function (req, response) {
             "Authorization": "key="+process.env.FCM,
         },
          body: {
-   "message": {
-    "token" : user.get('FCM'),
-    "notification" : {
-      "body" : "This is an FCM notification message!",
-      "title" : "FCM Message",
-      }
-   }
+  "notification": {
+    "title": "Background Message Title",
+    "body": "Background message body",
+    "click_action" : "https://dummypage.com"
+  },
+  "to" : user.get('FCM')
+             
   }
     }).then(function(httpResponse) {
       console.log('push send success ');
