@@ -69,7 +69,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
             var user = res[0];
             user.increment("new", 1);
             user.save({}, { useMasterKey: true }).then(function (s) {
-                console.log('######dum test', user);
+                console.log('######dum test', user.get('FCM'));
                 
       Parse.Cloud.httpRequest({
         method: 'POST',
