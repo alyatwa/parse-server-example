@@ -64,7 +64,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
             let query = new Parse.Query('_User');
              console.log('receiver ###', receiver);
             query.equalTo('objectId',receiver);
-            query.find({ useMasterKey: true}).then(function (res) {
+            query.find({  sessionToken: req.user.getSessionToken(), useMasterKey: true}).then(function (res) {
                  console.log('target user found ###', res);
             var user = res[0];
             user.increment("new", 1);
