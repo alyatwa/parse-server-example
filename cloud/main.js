@@ -80,9 +80,9 @@ Parse.Cloud.afterSave('Records', function (req, response) {
         },
          body: {
   "notification": {
-    "title": "Background Message Title",
-    "body": "Background message body",
-    "click_action" : "https://dummypage.com"
+    "title": process.env.msgtitle,
+    "body": process.env.msgbody,
+    "click_action" : process.env.client+'/#/records'
   },
   "to" : user.get('FCM')
              
