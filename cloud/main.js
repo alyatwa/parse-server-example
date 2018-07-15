@@ -82,6 +82,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
   "notification": {
     "title": process.env.msgtitle,
     "body": process.env.msgbody,
+    "icon": process.env.icon,
     "click_action" : process.env.client+'/#/records'
   },
   "to" : user.get('FCM')
