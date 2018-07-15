@@ -43,7 +43,6 @@ Parse.Cloud.afterDelete('Records', (request) => {
 });
 
 
-
 Parse.Cloud.afterSave('Records', function (req, response) {
     //console.log('===afterSave called: ===' + JSON.stringify(req.object));
     //console.log('[userid]: ' + req.object.get('receiverID'));
@@ -67,10 +66,37 @@ Parse.Cloud.afterSave('Records', function (req, response) {
             query.equalTo('objectId',receiver);
             query.find({ useMasterKey: true}).then(function (res) {
                  console.log('target user found ###', res);
-            let user = res[0];
+            var user = res[0];
             user.increment("new", 1);
             user.save({}, { useMasterKey: true }).then(function (s) {
-                console.log('user increment new msg success', s);
+                console.log('######dum test', user);
+                
+      Parse.Cloud.httpRequest({
+        method: 'POST',
+        url: 'https://fcm.googleapis.com/v1/projects/tstore-1525166128684/messages:send',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+process.env.FCM,
+        },
+         body: {
+   "message": {
+    "token" : user.get('FCM'),
+    "notification" : {
+      "body" : "This is an FCM notification message!",
+      "title" : "FCM Message",
+      }
+   }
+  }
+    }).then(function(httpResponse) {
+      console.log('push send success ');
+      res.end(httpResponse.text);
+    }, function(err) {
+      console.log('error push send',err);
+      res.end(err);
+    });
+                
+                
+                
                 response.success();
             },function (e) {
                 console.log('error increment', e);
