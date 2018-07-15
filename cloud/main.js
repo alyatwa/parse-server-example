@@ -57,7 +57,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
         acl.setWriteAccess(record.get('receiverID'), true);
         record.setACL(acl);
         record.save(null, {
-                sessionToken: req.user.getSessionToken()
+                useMasterKey: true
             }).then(function (recordset) {
             /****increment new for user****/
             let receiver = req.object.get('receiverID');
