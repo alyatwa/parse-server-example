@@ -36,7 +36,7 @@ var parsePgServer = new ParseServer({
   appId: process.env.APP_ID || 'myAppId',
   clientKey: process.env.myclientKey,
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  serverURL: 'http://recapmag.com:50000/parse' || process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed,
+  serverURL: 'http://site.com:50000/parse' || process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed,
     // Enable email verification
   verifyUserEmails: false,
    liveQuery: {
