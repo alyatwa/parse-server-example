@@ -13,18 +13,6 @@ var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 const MongoClient = require('mongodb').MongoClient;
 
 
-
-/*MongoClient.connect(databaseUri, (err, db) => {  
-  if (err) {
-    return console.log(databaseUri, 'Error-->', err, '<-------', db);
-  }
-  else {
-       return console.log(db);
-  }
-});*/
-
-
-
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
@@ -33,7 +21,7 @@ var parsePgServer = new ParseServer({
   databaseURI: 'postgres://user:pass@localhost:5432/reca_mlma',
   appId: process.env.APP_ID,
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  serverURL: 'https://recapmag.com:50000/pg',
+  serverURL: 'https://site.com:50000/pg',
   masterKey: process.env.MASTER_KEY,
   appName: process.env.APP_NAME,
   verifyUserEmails: false,
@@ -60,8 +48,8 @@ var parsePgServer = new ParseServer({
   appName: process.env.APP_NAME,
   // The email adapter
   emailAdapter: SimpleSendGridAdapter({
-    apiKey: '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',
-    fromAddress: 'ali.atwa2040@gmail.com',
+    apiKey: '',
+    fromAddress: '',
   })
 });*/
 
