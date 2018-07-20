@@ -7,7 +7,7 @@ Example project using the [parse-server](https://github.com/ParsePlatform/parse-
 Read the full Parse Server guide here: https://github.com/ParsePlatform/parse-server/wiki/Parse-Server-Guide
 
 ### For Local Development
-
+* `npm link parse-server ./parse-server'
 * Make sure you have at least Node 4.3. `node --version`
 * Clone this repo and change directory to it.
 * `npm install`
