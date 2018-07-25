@@ -1,7 +1,7 @@
 
 Parse.Cloud.define('hello', function (req, res) {
-    
-    res.success('Hi', getUserIP(req));
+    console.log('Hello', getUserIP(req))
+    res.success('Hi'+ getUserIP(req));
 });
 function getUserIP(request) {  
   var forwardedFor = request.headers['x-forwarded-for'];
