@@ -1,7 +1,16 @@
 
 Parse.Cloud.define('hello', function (req, res) {
-    res.success('Hi');
+    
+    res.success('Hi', getUserIP(req));
 });
+function getUserIP(request) {  
+  var forwardedFor = request.headers['x-forwarded-for'];
+  if (forwardedFor.indexOf(',') > -1) {
+    return forwardedFor.split(',')[0];
+  } else {
+    return forwardedFor;
+  }
+}
 Parse.Cloud.afterDelete('Records', (request) => {
         var record = request.object;
         //console.log('record.id *******************', record.id);
