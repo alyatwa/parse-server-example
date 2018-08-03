@@ -233,13 +233,14 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
     var queryr = new Parse.Query('Records');
     queryr.equalTo('receiver', username);
     queryr.find({ useMasterKey: true}).then(function (records) {
+        console.log('  --->  ',records)
         Parse.Object.destroyAll(records, {
             success: function() {
                 console.log('All msgs DEL Success');
             },
             error: function(err) {
-                console.log(err, 'All msgs DEL Failed');
-            }   
+                console.log(JSON.stringify(err), 'All msgs DEL Failed');
+            }
         });
      }); 
     
