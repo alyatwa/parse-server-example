@@ -153,21 +153,9 @@ Parse.Cloud.afterSave('Records', function (req, response) {
 });
 
 //Del all records related to user
-Parse.Cloud.afterDelete(Parse.User, (request) => {
-    var user = request.object.id;
-    var query = new Parse.Query('Records');
-    query.equalTo('receiverID', user);
-    query.find({ useMasterKey: true}).then(function (records) {
-        Parse.Object.destroyAll(records, {
-            success: function() {
-                console.log('All msgs DEL Success');
-            },
-            error: function(err) {
-                console.log(err, 'All msgs DEL Failed');
-            }   
-        });
-     }); 
-  });
+/*Parse.Cloud.afterDelete(Parse.User, (request) => {
+
+  });*/
         
         
         
@@ -233,6 +221,7 @@ Parse.Cloud.afterSave(Parse.User, function (request) {
 // remove user public data when user deleted
 Parse.Cloud.afterDelete(Parse.User, (request) => {
     var user = request.object.id;
+    var username = request.object.get('username');
     var query = new Parse.Query('PublicUser');
     query.equalTo('userId', user);
     query.first({
@@ -240,7 +229,20 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
             data.destroy({ useMasterKey: true });
         }
     });
-
+    
+    var queryr = new Parse.Query('Records');
+    queryr.equalTo('receiver', username);
+    queryr.find({ useMasterKey: true}).then(function (records) {
+        Parse.Object.destroyAll(records, {
+            success: function() {
+                console.log('All msgs DEL Success');
+            },
+            error: function(err) {
+                console.log(err, 'All msgs DEL Failed');
+            }   
+        });
+     }); 
+    
     if (request.object.get("img")) {
         var file = request.object.get("img").url();
         var real = process.env.SERVER_URL+"/files/"+file.substring(file.lastIndexOf("/") + 1);
