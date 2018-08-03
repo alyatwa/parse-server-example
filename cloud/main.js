@@ -151,6 +151,26 @@ Parse.Cloud.afterSave('Records', function (req, response) {
         })
     }
 });
+
+//Del all records related to user
+Parse.Cloud.afterDelete(Parse.User, (request) => {
+    var user = request.object.id;
+    var query = new Parse.Query('Records');
+    query.equalTo('userId', user);
+    query.find({ useMasterKey: true}).then(function (records) {
+        Parse.Object.destroyAll(records, {
+            success: function() {
+                console.log('All msgs DEL Success');
+            },
+            error: function(err) {
+                console.log(err, 'All msgs DEL Failed');
+            }   
+        });
+     }); 
+  });
+        
+        
+        
 Parse.Cloud.afterSave(Parse.User, function (request) {
     // console.log('====== before if ---------');
     if (!request.object.existed()) {
