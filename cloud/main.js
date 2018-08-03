@@ -156,7 +156,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
 Parse.Cloud.afterDelete(Parse.User, (request) => {
     var user = request.object.id;
     var query = new Parse.Query('Records');
-    query.equalTo('userId', user);
+    query.equalTo('receiverID', user);
     query.find({ useMasterKey: true}).then(function (records) {
         Parse.Object.destroyAll(records, {
             success: function() {
