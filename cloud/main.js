@@ -235,11 +235,12 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
     queryr.find({ useMasterKey: true}).then(function (records) {
         console.log('  --->  ',records)
         Parse.Object.destroyAll(records, {
+            useMasterKey: true,
             success: function() {
                 console.log('All msgs DEL Success');
             },
             error: function(err) {
-                console.log(JSON.stringify(err), 'All msgs DEL Failed');
+                console.log(err, 'All msgs DEL Failed');
             }
         });
      }); 
