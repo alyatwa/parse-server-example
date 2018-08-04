@@ -1,16 +1,37 @@
 
 Parse.Cloud.define('hello', function (req, res) {
-    console.log('Hello', getUserIP(req))
-    res.success('Hi'+ getUserIP(req));
+
+                res.success('Hi');
 });
-function getUserIP(request) {  
-  var forwardedFor = request.headers['x-forwarded-for'];
-  if (forwardedFor.indexOf(',') > -1) {
-    return forwardedFor.split(',')[0];
-  } else {
-    return forwardedFor;
-  }
-}
+
+Parse.Cloud.define('getUser', function (req, res) {
+  var query = new Parse.Query(Parse.User);
+        query.equalTo('username', req.params.username);
+        query.find({ useMasterKey: true}).then(
+            function (data) {
+             res.success(data[0]);  
+            },
+            function (err) {
+                console.log('error:  ',err); 
+                res.end(err);
+            });
+});
+
+Parse.Cloud.define('getRecord', function (req, res) {
+  var query = new Parse.Query('Records');
+        query.equalTo('objectId', req.params.recordId);
+        query.first({
+        success: function (data) {
+             res.success(data);
+        },
+        error: function (err) {
+            console.log('error:  ',err); 
+            res.end(err);
+        }
+    });    
+});
+
+
 Parse.Cloud.afterDelete('Records', (request) => {
         var record = request.object;
         //console.log('record.id *******************', record.id);
@@ -53,7 +74,7 @@ Parse.Cloud.afterDelete('Records', (request) => {
 
 
 Parse.Cloud.afterSave('Records', function (req, response) {
-    //console.log('===afterSave called: ===' + JSON.stringify(req.object));
+    console.log('===afterSave called: ===' + JSON.stringify(req.object));
     //console.log('[userid]: ' + req.object.get('receiverID'));
     if (!req.object.existed()) {
         var record = req.object;
@@ -73,7 +94,7 @@ Parse.Cloud.afterSave('Records', function (req, response) {
             let query = new Parse.Query('_User');
              console.log('receiver ###', receiver);
             query.equalTo('objectId',receiver);
-            query.find({  sessionToken: req.user.getSessionToken(), useMasterKey: true}).then(function (res) {
+            query.find({ useMasterKey: true}).then(function (res) {
                  console.log('target user found ###', res);
             var user = res[0];
             user.increment("new", 1);
@@ -135,30 +156,17 @@ Parse.Cloud.afterSave('Records', function (req, response) {
                 'sender': username,
                 'recordId': req.object.id,
                 'file': req.object.get('file'),
-                'recordid': {
-                    "__type": "Pointer",
-                    "className": "Records",
-                    "objectId": req.object.id
-                },
             });
 
             PrivateRecord.save({}, { useMasterKey: true }).then(function (s) {
                 console.log('private record saved: ' + s.get('recordId'));
                 //console.log('[afterSave succeeded]: ' + JSON.stringify(s));
             }, function (e) {
-                //console.log('[afterSave failed]: ' + JSON.stringify(e));
+                console.log('[afterSave failed]: ' + JSON.stringify(e));
             });
         })
     }
 });
-
-//Del all records related to user
-/*Parse.Cloud.afterDelete(Parse.User, (request) => {
-
-  });*/
-        
-        
-        
 Parse.Cloud.afterSave(Parse.User, function (request) {
     // console.log('====== before if ---------');
     if (!request.object.existed()) {
@@ -233,7 +241,7 @@ Parse.Cloud.afterDelete(Parse.User, (request) => {
     var queryr = new Parse.Query('Records');
     queryr.equalTo('receiver', username);
     queryr.find({ useMasterKey: true}).then(function (records) {
-        console.log('  --->  ',records)
+        console.log('  --->  ',records, ' <--- ')
         Parse.Object.destroyAll(records, {
             useMasterKey: true,
             success: function() {
