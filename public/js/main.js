@@ -1204,9 +1204,9 @@ $(document).ready(function () {
 
     function setHeadTags(router, user, record) {
         var siteName = i18next.t('head.sitename');
-        var siteURL = 'https://recapmag.com:50000';
+        var siteURL = 'https://moklma.herokuapp.com';
         var description = i18next.t('head.description');
-        var image = siteURL + '/imgs/fb-sharecard.png';
+        var image = siteURL + '/public/imgs/fb-sharecard.png';
         var lang = Cookies.get('language');
         var locale = ((lang == 'ar') ? 'ar_AR' : 'en_US')
         
@@ -1241,7 +1241,7 @@ $(document).ready(function () {
         } else if (router == 'record') {
             let pageTitle = record.username + ' | ' + siteName;
             let userImage = ((record.img) ? record.img._url : image)
-            let recordURL = 'https://.com/#/record/' + record.recordId
+            let recordURL = 'https://moklma.herokuapp.com.com/#/record/' + record.recordId
             $("meta[property='og:url']").attr('content', recordURL)
             $("meta[property='og:title']").attr('content', pageTitle)
             $("meta[name='twitter:title']").attr('content', pageTitle)
