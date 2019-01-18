@@ -1,0 +1,20 @@
+{
+  "gcm_sender_id": "103953800507",
+  "short_name": "Moklma",
+  "name": "Moklma",
+  "icons": [{
+      "src": "/imgs/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/imgs/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#000000",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff"
+}

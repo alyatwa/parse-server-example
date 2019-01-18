@@ -1,0 +1,143 @@
+{
+    "nav": {
+        "home": "Home",
+        "msgs": "Messages",
+        "manage": "Manage",
+        "fblogin": "Login with Facebook",
+        "signup": "Signup",
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "head": {
+        "sitename": "Moklma",
+        "cardtag": "CREATE ACCOUNT TO GET YOUR FRIENDS FEEDBACK",
+        "cardsignup": "SIGN UP",
+        "title": "Moklma | Send Anonymous Voice Messages",
+        "description": "Moklma lets you send and receive voice messenges anonymously by Changing your voice pitch"
+    },
+    "home": {
+        "linkcopied": "Link Copied!",
+        "addscreen": "Add to home screen",
+        "message": "Message",
+        "card1": "Send anonymous Voice Messages to your friends",
+        "card2": "Change the pitch of your voice message before you send it",
+        "seeall": "See All"
+    },
+    "user": {
+        "start": "Start",
+        "processing": "Processing",
+        "del": "Remove",
+        "send": "Send",
+        "sending": "Sending",
+        "continue": "Continue",
+        "pause": "Pause",
+        "sent": "Sent!",
+        "pitchshift": "Filter"
+    },
+    "record": {
+        "title": "Messages",
+        "msg": "Message",
+        "prev": "Previous",
+        "next": "Next",
+        "remove": "Remove",
+        "copy": "Share message",
+        "private": "Cancel share",
+        "download": "Download",
+        "nomsgs": "No messages"
+    },
+    "login": {
+        "login": "Login",
+        "errpassword": "Wrong password. Try again or click Forgot password to reset it.",
+        "forgotpassword": "Forgot password?",
+        "enterpassword": "Enter a password",
+        "enterusername": "Enter an email or username",
+        "erruserorpass": "Incorrect username / password!",
+        "enterdata": "Fill all fields!",
+        "noaccount": "The username or email that you've entered doesn't match any account. Sign up for an account.",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password"
+    },
+    "signup": {
+        "submit": "Signup",
+        "erruser": "Username must contain characters & numbers",
+        "erremail": "Enter correct email",
+        "err6pass": "Password must be at least 6 characters",
+        "username": "Username",
+        "privacy": "Terms of Use",
+        "accept": "I accept ",
+        "email": "Email",
+        "password": "Password",
+
+        "enterdata": "Fill all fields!",
+        "acceptprivacy": "You must accept pricavy policy",
+        "successsignup": "You have successfully signup",
+        "useralready": "Username already registed",
+        "emailalready": "Email aleardy registed"
+    },
+    "reset": {
+        "relogin": "Login again",
+        "head": "Enter your email",
+        "submit": "Submit",
+        "noaccount": "No account with this email",
+        "passent": "Check your email for password",
+        "enteremail": "Enter your email",
+        "email": "Email"
+    },
+    "footer": {
+        "tos": "Terms of Use",
+        "pp": "Privacy Policy",
+        "contact": "Contact"
+    },
+    "manage": {
+        "manage": "Manage",
+        "username": "Username",
+        "password": "Password",
+        "enterdata": "Fill all fields!",
+        "successsave": "Success change",
+        "enterpassword": "Enter a password",
+        "successpassword": "Password changed successfully",
+        "email": "Email",
+        "changingphoto": "Changing photo...",
+        "successphoto": "Photo changed successfully",
+        "erroremail": "Enter valid email!",
+        "errorimg": "Select photo",
+        "changepassword": "Change password",
+        "save": "Save",
+        "select": "Select",
+        "show": "Show",
+        "hide": "Hide"
+    },
+    "tos": {
+        "h1": "What are these Terms of Use?",
+        "p1": "These terms (“TOU”) are part of the legal documents that govern your access to use our site through the website (the “Services”).",
+        "h2": "Why are these TOU important?",
+        "p2": "By accessing, using, registering for or receiving any of the Services, you are agreeing to be bound by the terms and conditions of these TOU and to the Privacy Policy and Cookie Policy, which are incorporated herein by reference. You need to read them before you use or access the Services because these terms create a legally binding relationship between you as a user of the Services and us.",
+        "h3": "What if I don’t accept these TOU?",
+        "p3": "If you don’t accept these TOU, you must stop using or accessing the Services.",
+        "h4": "Do I need my parents’ consent to sign up?",
+        "p4": "If you are a minor, that means under the age of legal majority in your country, and are not an emancipated minor (in countries that permit this), you must have your parents’ or guardian’s consent to enter into these TOU and to use the Services, and by using the Services you are confirming that you have received that consent.",
+        "h5": "What laws do I need to follow?",
+        "p5": "You are responsible for making sure you follow all laws and regulations in the country in which you live when you access and use the Services. By using the Services, you are confirming that you have not been convicted of, nor are you subject to any court order relating to, assault, violence, sexual misconduct or harassment.",
+        "h6": "Do I need to register to use the Services?",
+        "p6": "To use some parts of the Services, you may be required to register for an account with us by providing certain information, including your name, e-mail address, and password. You agree to provide true and accurate information and to update it as necessary to keep it accurate. If you provide us with false information, we reserve the right to suspend or terminate your account."
+    },
+    "pp": {
+        "h1": "What is a Privacy Policy?",
+        "p1": "This Privacy Policy explains how we collect, use shares and stores your information when you use our website that link to this Privacy Policy.",
+        "h2": "Why do I need to read and accept it?",
+        "p2": "When you use our Services, you are agreeing to our rules and policies, including this Privacy Policy and Terms of Use, and you consent to our collecting, processing and storing your information as described below.You must not access or use the Services if you do not agree with our Privacy Policy.You should also read our Terms of Use because they also apply to your use of the Services.",
+        "h3": "What privacy law applies to our site?",
+        "p3": "The personal information you provide to us that is collected through our Services is controlled by our site in accordance with the laws of the country in which you live, meaning that not all parts of this policy will be relevant depending on where you live.",
+        "h4": "How do you collect my data?",
+        "p4": "How we collect, process and store information depends in part on how you use the Services. You may register to use the Services(“Registered User”).You can use some of the Services without creating an account(“Guest User”) or providing any information other than information that is automatically collected as explained below.The different categories of information we collect from you are described below.",
+        "h5": "What data do you collect about me?",
+        "p5": "We may collect information from you during your use of the Services, including your username, password, country, e-mail address, and other information you provide or post on our Services or allow us to access when you do certain things, such as: Sign up, Sign in, send a message",
+        "h6": "Do you collect data about my computer/my phone?",
+        "p6": "We may automatically collect certain information about the computer or devices (including mobile devices) you use to access the Services, and about your use of the Services, even if you use the Services as a Guest User. We may collect information such as IP addresses",
+        "h7": "I’ve heard about cookies, do you collect them too?",
+        "p7": "When you use the Services, we use persistent and session cookies and other similar technologies to store your username, language and password",
+        "h8": "If I send message anonymously, do you still know who I am?",
+        "p8": "The fact that you can send messages without other people knowing who you are is so much fun. It means that you can send messages that you might be too embarrassed or shy to say if anyone knew it was you. People may often be more honest when they are anonymous, when they’re sending message anonymously, they don’t know who has sent it. "
+    }
+}

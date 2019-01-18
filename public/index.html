@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moklma | Send Anonymous Voice Messages</title>
+  <meta name="description" content="Moklma lets you send and receive voice messenges anonymously by Changing your voice pitch"
+  />
+
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Moklma | Send Anonymous Voice Messages">
+  <meta itemprop="description" content="Moklma lets you send and receive voice messenges anonymously by Changing your voice pitch">
+  <meta itemprop="image" content="https://recapmag.com:50000/imgs/fb-sharecard.png">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@moklmaa">
+  <meta name="twitter:title" content="Moklma | Send Anonymous Voice Messages">
+  <meta name="twitter:description" content="Moklma lets you send and receive voice messenges anonymously by Changing your voice pitch">
+  <!-- Twitter summary card with large image must be at least 280x150px -->
+  <meta name="twitter:image" content="https://recapmag.com:50000/imgs/fb-sharecard.png">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Moklma | Send Anonymous Voice Messages" />
+  <meta property="og:type" content="website" />
+  <meta property="fb:app_id" content="209443563012425" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://recapmag.com:50000" />
+  <meta property="og:image" content="https://recapmag.com:50000/imgs/fb-sharecard.png" />
+  <meta property="og:description" content="Moklma lets you send and receive voice messenges anonymously by Changing your voice pitch"
+  />
+  <meta property="og:site_name" content="Moklma" />
+
+  <link rel="apple-touch-icon" href="/imgs/apple57.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/imgs/apple76.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/imgs/apple76.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imgs/apple180.png">
+
+  <link rel="icon" href="/imgs/faviconlog.ico" type="image/x-icon">
+  <meta name="google-site-verification" content="pUHIj_sR98SU2lkxc2EKR-1UOFlDIyy6ndHrs0m0ajk" />
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm px-sm-5 px-md-5 py-2 navbar-light bg-light">
+    <a class="navbar-brand py-0 ml-3" href="#">
+      <img src="/imgs/logo.svg" width="22%" height="22%" class="d-inline-block align-top logo" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse nav-head" id="navbarNavAltMarkup">
+
+    </div>
+  </nav>
+
+  <script id="nav-head-tpl" type="text/x-handlebars-template">
+    <div class="navbar-nav hidetemp main-nav">
+      <a class="nav-item nav-link mr-3 text-dark login textaslink" data-i18n="nav.login"></a>
+      <a class="nav-item btn btn-register mr-3 signup text-light textaslink" data-i18n="nav.signup"></a>
+      <a class="nav-item nav-link text-dark mr-3 login textaslink" href="/aliatwa">aliatwa</a>
+    </div>
+  </script>
+
+  <script id="nav-new-tpl" type="text/x-handlebars-template">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link text-dark login" data-i18n="nav.home" href="/"></a>
+      <a class="nav-item nav-link text-dark login" href="/records">
+        <span class="text-dark" data-i18n="nav.msgs"></span>
+        <span class="badge badge-secondary badge-data">{{badge}}</span>
+      </a>
+      <a class="nav-item nav-link text-dark login manage-btn" data-i18n="nav.manage" href="/manage"></a>
+      <a class="nav-item nav-link text-dark login" data-i18n="nav.logout" href="/logout"></a>
+      <a class="nav-item nav-link text-dark login" href="/aliatwa">aliatwa</a>
+    </div>
+  </script>
+
+  <script id="home-tpl" type="text/x-handlebars-template">
+    <div class="row p-4 bg-light">
+          <div class="col px-0 col-sm-6 mb-3 mx-auto">
+             <span class="py-2 w-100 h5 text-dark" data-i18n="head.sitename"></span>
+          </div>
+      <div class="w-100"></div>
+      <div class="col px-0 main-nav">
+        <div class="col px-0 col-sm-6 my-3 mx-auto">
+          <a class="btn btn-login-home py-2 w-100 text-dark login textaslink" data-i18n="nav.login"></a>
+        </div>
+        <div class="col px-0 col-sm-6 my-3 mx-auto">
+          <a class="btn signup py-2 w-100 btn-register-home text-light textaslink" data-i18n="nav.signup"></a>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="col px-0 col-sm-6 mb-3 mx-auto">
+        <a class="btn signup py-2 w-100 btn-fb h6 textaslink text-light" data-i18n="nav.fblogin"></a>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-sm-12 col-md card1-home h6 mr-0 mb-4 mb-sm-4 mb-md-0 mr-md-2 px-4 py-5 bg-light">
+      <p class="mb-0 w-50 w-md-100 mr-auto mx-md-0 ml-sm-auto mr-md-2 mr-md-auto h6" data-i18n="home.card1">
+        </p>
+      </div>
+      <div class="col-sm-12 col-md card2-home h6 ml-0 ml-md-2 mb-0 px-4 py-5 bg-light">
+      <p class="mb-0 w-50 w-md-100 ml-auto mx-md-0 mr-sm-auto ml-md-2 ml-md-auto h6" data-i18n="home.card2">
+        </p>
+      </div>
+    </div>
+
+  </script>
+
+  <script id="TOS-tpl" type="text/x-handlebars-template">
+    <div class="mx-auto p-4 bg-light col-md-12 text-dark blog-main-{{lang}}">
+      <h1 data-i18n="footer.tos" class="pb-3 mb-4 border-bottom title-footer"></h1>
+
+      <div class="blog-post">
+        <h3 data-i18n="tos.h1"></h3>
+        <p data-i18n="tos.p1"></p>
+        <h3 data-i18n="tos.h2"></h3>
+        <p data-i18n="tos.p2"></p>
+        <h3 data-i18n="tos.h3"></h3>
+        <p data-i18n="tos.p3"></p>
+        <h3 data-i18n="tos.h4"></h3>
+        <p data-i18n="tos.p4"></p>
+        <h3 data-i18n="tos.h5"></h3>
+        <p data-i18n="tos.p5"></p>
+        <h3 data-i18n="tos.h6"></h3>
+        <p data-i18n="tos.p6"></p>
+      </div>
+
+
+    </div>
+
+  </script>
+
+  <script id="PP-tpl" type="text/x-handlebars-template">
+    <div class="mx-auto p-4 bg-light col-md-12 text-dark blog-main-{{lang}}">
+      <h1 data-i18n="footer.pp" class="pb-3 mb-4 border-bottom title-footer">
+
+      </h1>
+      <div class="blog-post">
+        <h3 data-i18n="pp.h1"></h3>
+        <p data-i18n="pp.p1"></p>
+        <h3 data-i18n="pp.h2"></h3>
+        <p data-i18n="pp.p2"></p>
+        <h3 data-i18n="pp.h3"></h3>
+        <p data-i18n="pp.p3"></p>
+        <h3 data-i18n="pp.h4"></h3>
+        <p data-i18n="pp.p4"></p>
+        <h3 data-i18n="pp.h5"></h3>
+        <p data-i18n="pp.p5"></p>
+        <h3 data-i18n="pp.h6"></h3>
+        <p data-i18n="pp.p6"></p>
+        <h3 data-i18n="pp.h7"></h3>
+        <p data-i18n="pp.p7"></p>
+        <h3 data-i18n="pp.h8"></h3>
+        <p data-i18n="pp.p8"></p>
+      </div>
+  </script>
+
+  <script id="welcome-tpl" type="text/x-handlebars-template">
+
+   <div class="container px-0">
+
+    <div class="row justify-content-center">
+      <div class="col-sm-5 col-md-4 px-0">
+        <div class="row w-sm-100 w-md-50 text-left py-4 px-3 d-flex bg-dark mx-0 mr-sm-3 mr-md-3 mb-3">
+           {{#if lang}}
+              <div class="col p-0">
+                <p class="h4 text-left text-light mb-0">{{msgcount}}</p>
+              </div>
+                <div class="w-100"></div>
+              <div class="col p-0 mt-3">
+                <div class="d-flex">
+                    <div class="mr-auto"><span class="h5 text-light mb-0" data-i18n="home.message"></span></div>
+                    <div class="ml-auto"><a class="h6 text-light mb-0" href="/records" data-i18n="home.seeall"></a></div>
+                </div>
+              </div>
+            {{else}}
+              <div class="col p-0">
+                <p class="h4 text-right text-light mb-0 newmsgs">{{msgcount}}</p>
+              </div>
+              <div class="w-100"></div>
+              <div class="col p-0 mt-3">
+                <div class="d-flex">
+                  <div class="mr-auto">
+                    <a class="h6 text-light mb-0" href="/records" data-i18n="home.seeall"></a>
+                  </div>
+                  <div class="ml-auto">
+                    <span class="h5 text-light mb-0" data-i18n="home.message"></span>
+                  </div>
+                  
+                </div>
+              </div>
+            {{/if}}
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+      <div class="row py-3 bg-light">
+        <div class="col">
+          <div style="background: url({{imgurl}});" class="img-profile mx-auto d-block rounded-circle" /></div>
+        <div class="w-100"></div>
+        <div class="col my-2">
+          <h4 class="text-dark">{{username}}</h4>
+        </div>
+        <div class="w-100"></div>
+        <div class="col">
+          <a class="px-3 bg-dark py-2 h6 text-light copy-link profile-url" href="{{url}}">{{url}}</a>
+        </div>
+        <div class="w-100"></div>
+        <div class="col mt-3">
+          <span class="text-dark toast" data-i18n="home.linkcopied"></span>
+        </div>
+      </div>
+
+      {{#unless webapp}}
+      <div class="row md-flex textaslink my-3 bg-dark app-card">
+        <div class="h6 mt-auto bg-light ml-2 mb-2 p-2 mr-auto mb-0">
+          <span class="h6 text-dark font-weight-bold" data-i18n="home.addscreen"></span>
+        </div>
+      </div>
+      {{/unless}}
+
+
+      </div>
+      </div>
+
+    </div>
+
+
+  </script>
+
+  <script id="master-tpl" type="text/x-handlebars-template">
+  </script>
+
+  <script id="user-tpl" type="text/x-handlebars-template">
+    <div class="container p-4 bg-light"> 
+    {{#unless userlogin}} {{#if lang}}
+    <div class="d-flex flex-column signup-card main-nav ">
+      <div class="mr-auto d-none d-sm-block mx-3 mt-auto">
+        <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+      </div>
+      <div class="d-flex mb-3 mx-3 mt-auto my-auto justify-content-between">
+        <div class="ml-auto mr-sm-auto mx-3 d-block d-sm-none mt-auto">
+          <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+        </div>
+        <div class="mr-auto d-none d-sm-block my-auto">
+          <p class="text-light mb-0 h6" data-i18n="head.cardtag"></p>
+        </div>
+        <div class="ml-auto mt-auto">
+          <p class="h6 text-dark bg-light text-center py-2 px-3 m-0 text-nowrap" data-i18n="head.cardsignup"></p>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="d-flex flex-column signup-card main-nav ">
+      <div class="ml-auto d-none d-sm-block mx-3 mt-auto">
+        <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+      </div>
+      <div class="d-flex mb-3 mx-3 mt-auto my-auto justify-content-between">
+
+        <div class="mr-auto ml-sm-auto0 mt-auto">
+          <p class="h6 text-dark bg-light text-center py-2 px-3 m-0 text-nowrap" data-i18n="head.cardsignup"></p>
+        </div>
+        <div class="ml-auto mx-3 d-block d-sm-none mt-auto">
+          <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+        </div>
+        <div class="ml-auto d-none d-sm-block my-auto">
+          <p class="text-light mb-0 h6" data-i18n="head.cardtag"></p>
+        </div>
+
+      </div>
+    </div>
+
+    {{/if}} {{/unless}}
+
+
+    <div class="container my-4">
+      <div style="background: url({{imgurl}});" class="img-profile mx-auto d-block rounded-circle" />
+
+      <h4 class="text-dark">{{username}}</h4>
+
+    </div>
+
+    <div class="row center-block align-items-center user-box" data-id="{{id}}" data-username="{{username}}">
+      <div class="col-auto p-0">
+        <button type="button" data-recording="false" class="btn btn-circle record-btn">
+          <small class="text-sub record-btn-text" data-i18n="user.start"></small>
+        </button>
+      </div>
+      <div class="col-auto pr-auto loading">
+        <small class="text-dark">
+          <span class="loading-text" data-i18n="user.processing"></span>
+        </small>
+        <div class="center-block loading-dark">
+          <div class="loading-dot bg-dark"></div>
+          <div class="loading-dot bg-dark"></div>
+          <div class="loading-dot bg-dark"></div>
+          <div class="loading-dot bg-dark"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-dark container my-3 record-box">
+      <div class="card-body px-0">
+        <div class="row">
+          <div class="col align-self-center my-3 px-0">
+            <p class="card-text">
+              <small class="text-sub">
+                <span class="textaslink remove" id="remove" href="#" data-i18n="user.del"></span> |
+                <span class="textaslink send" id="send" href="#" data-i18n="user.send"></span>
+              </small>
+            </p>
+            <audio src="sample.mp3" id="audio" width="100%" height="43" type="audio/mp3" controls="controls"></audio>
+            <div class="w-100 d-md-block my-2 text-light" data-i18n="user.pitchshift"></div>
+
+            <input type="text" name="audiolevel" class="level" data-provide="slider" data-slider-min="1" data-slider-max="100" data-slider-step="1"
+              data-slider-value="3" data-slider-tooltip="hide">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </script>
+
+  <script id="records-tpl" type="text/x-handlebars-template">
+    <div class="countainer bg-light p-4">
+    <h2 class="text-dark mb-3" data-i18n="record.title"></h2>
+    {{#each records}}
+
+    <div class="card bg-dark mb-3">
+      <div class="card-body px-1 pb-0">
+       
+        <audio src="{{url}}" id="player1" width="100%" height="43" type="audio/mp3" controls="controls"></audio>
+        <p class="card-text mb-1">
+          <small class="textbtn mb-0">{{date}} |
+            <a class="textaslink textbtn" data-i18n="record.remove" href="/del/{{id}}"></a> |
+            <span class="textaslink copy copy-{{id}}" data-i18n="record.{{private}}" data-public="{{public}}" data-id="{{id}}" href="#"></span> |
+            <span class="textaslink download" data-i18n="record.download" data-url="{{url}}" href="#"></span>
+          </small>
+        </p>
+        
+        <div class="media text-muted pt-0 display-{{public}} shared-link-{{id}}">
+          <a class="py-1 text-sub copy-link profile-url" href="msg/{{id}}">{{link}}</a>
+          <img class="ml-2 textaslink copy-img" data-id="{{id}}" src="/imgs/copy.svg" style="width: 18px; height: 18px;">
+        </div>
+        
+      </div>
+      
+      <div class="center-block my-1 loading-{{id}} display-false loading-dark">
+          <div class="loading-dot bg-white"></div>
+          <div class="loading-dot bg-white"></div>
+          <div class="loading-dot bg-white"></div>
+          <div class="loading-dot bg-white"></div>
+        </div>
+      <div class="d-flex">
+      <img class="textaslink report-spam ml-auto m-2" alt="Report Spam" data-id="{{id}}" src="/imgs/spam.svg" style="width: 20px; height: 20px;"/>
+      </div>
+    </div>
+    {{else}}
+    <h4 class="text-dark" data-i18n="record.nomsgs"></h4>
+    {{/each}} {{#greaterThan totalrecords 5}}
+    <div class="row center-block align-items-center">
+      <div class="col-auto mr-1 p-0">
+        <button type="button" class="btn btn-circle prev-btn {{disprev}}">
+          <small class="text-sub record-btn-text" data-i18n="record.prev"></small>
+        </button>
+      </div>
+      <div class="col-auto ml-1 p-0">
+        <button type="button" class="btn btn-circle next-btn {{dis}}">
+          <small class="text-sub record-btn-text" data-i18n="record.next"></small>
+        </button>
+      </div>
+    </div>
+    {{/greaterThan}}
+    </div>
+  </script>
+
+  <script id="manage-tpl" type="text/x-handlebars-template">
+    <div class="bg-light py-4">
+      <h2 class="text-dark my-3" data-i18n="manage.manage"></h2>
+    <div id="manage">
+      <div style="background: url({{imgurl}});" class="img-profile mx-auto d-block rounded-circle" />
+      <h4 class="text-dark">{{username}}</h4>
+      <form class="form form-manage">
+        <p class="fieldset">
+          <label class="image-replace username" for="signin-username" data-i18n="manage.username"></label>
+          <input class="full-width has-padding has-border username-update" autocomplete="username" required value="{{username}}" id="manage-username"
+            type="username" data-i18n="[placeholder]manage.username" placeholder="">
+          <span class="error-message">...</span>
+        </p>
+
+        <p class="fieldset">
+          <label class="image-replace email" data-i18n="manage.email" for="manage-email"></label>
+          <input class="full-width has-padding has-border email-update" autocomplete="email" required value="{{email}}" id="manage-email"
+            type="email" data-i18n="[placeholder]manage.email" placeholder="">
+          <span class="error-message" data-i18n="manage.erroremail"></span>
+        </p>
+
+        <p class="fieldset">
+          <div class='file-input'>
+            <input type='file' accept=".jpg,.jpeg,.png" class=" form-control-file full-width has-padding has-border img-file" />
+            <span class='button' data-i18n="manage.select"></span>
+            {{#if img}}
+            <span class='label image-replace' data-js-label>{{img}}</label>
+              {{else}}
+              <span class='label image-replace' data-js-label data-i18n="manage.errorimg">
+                </label>
+                {{/if}}
+          </div>
+        </p>
+
+        <p class="form-message-manage text-dark"></p>
+
+        <button type="button" class="py-3 w-100 btn bg-dark updateinfo">
+          <small class="text-sub record-btn-text" data-i18n="manage.save"></small>
+        </button>
+
+      </form>
+
+      <form class="form form-updatepassword">
+        <h5 class="text-dark" data-i18n="manage.changepassword"></h5>
+        <p class="fieldset">
+          <label class="image-replace password" data-i18n="manage.password" for="manage-password"></label>
+          <input class="full-width has-padding has-border password-update" data-i18n="[placeholder]manage.password" required id="manage-password"
+            type="password" placeholder="">
+          <span href="#" class="textaslink hide-password" data-shid="show" data-i18n="manage.show"></span>
+          <span class="error-message">...</span>
+        </p>
+
+        <p class="form-message-password text-dark"></p>
+
+        <button type="button" class="py-3 w-100 btn bg-dark updatepassword">
+          <small class="text-sub record-btn-text" data-i18n="manage.save"></small>
+        </button>
+
+        <!--<p class="fieldset">
+                    <input class="full-width" type="submit" data-i18n="[value]manage.save" value="حفظ">
+                  </p>-->
+      </form>
+    </div>
+</div>
+  </script>
+
+  <script id="record-tpl" type="text/x-handlebars-template">
+    {{#unless userlogin}} {{#if lang}}
+    <div class="d-flex flex-column signup-card main-nav ">
+      <div class="mr-auto d-none d-sm-block mx-3 mt-auto">
+        <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+      </div>
+      <div class="d-flex mb-3 mx-3 mt-auto my-auto justify-content-between">
+        <div class="ml-auto mr-sm-auto mx-3 d-block d-sm-none mt-auto">
+          <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+        </div>
+        <div class="mr-auto d-none d-sm-block my-auto">
+          <p class="text-light mb-0 h6" data-i18n="head.cardtag"></p>
+        </div>
+        <div class="ml-auto mt-auto">
+          <p class="h6 text-dark bg-light text-center py-2 px-3 m-0 text-nowrap" data-i18n="head.cardsignup"></p>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="d-flex flex-column signup-card main-nav ">
+      <div class="ml-auto d-none d-sm-block mx-3 mt-auto">
+        <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+      </div>
+      <div class="d-flex mb-3 mx-3 mt-auto my-auto justify-content-between">
+
+        <div class="mr-auto ml-sm-auto0 mt-auto">
+          <p class="h6 text-dark bg-light text-center py-2 px-3 m-0 text-nowrap" data-i18n="head.cardsignup"></p>
+        </div>
+        <div class="ml-auto mx-3 d-block d-sm-none mt-auto">
+          <p class="text-light m-0 h4" data-i18n="head.sitename"></p>
+        </div>
+        <div class="ml-auto d-none d-sm-block my-auto">
+          <p class="text-light mb-0 h6" data-i18n="head.cardtag"></p>
+        </div>
+
+      </div>
+    </div>
+
+    {{/if}} {{/unless}}
+
+    <div class="container my-3">
+      <div class="row">
+        <div class="col">
+          <div style="background: url({{record.imgurl}});" class="img-profile mx-auto d-block rounded-circle" />
+        </div>
+        <div class="w-100 my-1 my-md-2 my-sm-2"></div>
+        <div class="col mb-2">
+          <a class="px-3 bg-dark h5 text-light copy-link profile-url" href="{{record.profile}}">{{record.username}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-dark mb-3">
+      <div class="card-body px-1">
+        <audio src="{{record.url}}" id="player1" width="100%" height="43" type="audio/mp3" controls="controls"></audio>
+        <p class="card-text mb-0">
+          <small class="text-sub">{{record.date}}
+          </small>
+        </p>
+        <div class="display-true shared-link-{{record.id}}">
+          <a class="py-2 text-sub copy-link profile-url " href="/msg/{{record.id}}">{{record.link}}</a>
+          <img class="ml-2 textaslink copy-img" data-id="{{record.id}}" src="/imgs/copy.svg" style="width: 18px; height: 18px;">
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script id="load-tpl" type="text/x-handlebars-template">
+    <div class="row bg-light py-5">
+      <div class="mx-auto loading-dark">
+        <div class="loading-dot loading-dim bg-dark"></div>
+        <div class="loading-dot loading-dim bg-dark"></div>
+        <div class="loading-dot loading-dim bg-dark"></div>
+        <div class="loading-dot loading-dim bg-dark"></div>
+      </div>
+    </div>
+  </script>
+
+
+  <div class="main-content my-5 p-0 mx-auto col-10 col-md-10 col-lg-10 col-xl-8 ">
+    <div class="home text-center records-count  px-3 py-2" data-currentpage="0" data-count="1"></div>
+  </div>
+  <!-- /container -->
+  <div class="user-modal">
+    <div class="user-modal-container">
+      <ul class="switcher">
+        <li>
+          <a class="textaslink" data-i18n="nav.login"></a>
+        </li>
+        <li>
+          <a class="textaslink" data-i18n="nav.signup"></a>
+        </li>
+      </ul>
+
+      <div id="login">
+        <form class="form form-signin">
+          <p class="fieldset">
+            <label class="image-replace email" for="signin-email" data-i18n="login.username"></label>
+            <input class="full-width has-padding has-border" data-i18n="[placeholder]login.username" autocomplete="email" id="signin-email"
+              type="email" placeholder="">
+            <span class="error-message" data-i18n="login.noaccount"></span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace password" data-i18n="login.password" for="signin-password"></label>
+            <input class="full-width has-padding has-border" data-i18n="[placeholder]login.password" autocomplete="password" id="signin-password"
+              type="password" placeholder="">
+            <span href="#" class="textaslink hide-password" data-shid="show" data-i18n="manage.show">...</span>
+            <span class="error-message" data-i18n="login.errpassword">...</span>
+          </p>
+
+          <div class="center-block loading-dark loading-login display-false">
+            <div class="loading-dot bg-dark"></div>
+            <div class="loading-dot bg-dark"></div>
+            <div class="loading-dot bg-dark"></div>
+            <div class="loading-dot bg-dark"></div>
+          </div>
+          <p class="form-message-login"></p>
+          <p class="fieldset">
+            <input class="full-width" type="submit" data-i18n="[value]login.login" value="">
+          </p>
+        </form>
+
+
+        <p class="form-bottom-message">
+          <a class="textaslink text-light" data-i18n="login.forgotpassword"></a>
+        </p>
+        <!-- <a href="#" class="close-form">Close</a> -->
+      </div>
+
+      <div id="signup">
+        <form class="form">
+          <p class="fieldset">
+            <label class="image-replace username" data-i18n="signup.username" for="signup-username"></label>
+            <input class="full-width has-padding has-border" data-i18n="[placeholder]signup.username" id="signup-username" type="text"
+              placeholder="">
+            <span class="error-message" data-i18n="signup.erruser"></span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace email" data-i18n="signup.email" for="signup-email"></label>
+            <input class="full-width has-padding has-border" data-i18n="[placeholder]signup.email" id="signup-email" type="email" placeholder="الايميل">
+            <span class="error-message" data-i18n="signup.erremail"></span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace password" data-i18n="signup.password" for="signup-password"></label>
+            <input class="full-width has-padding has-border" data-i18n="[placeholder]signup.password" autocomplete="password" id="signup-password"
+              type="password" placeholder="">
+            <span href="#" class="textaslink hide-password" data-shid="show" data-i18n="manage.show"></span>
+            <span class="error-message" data-i18n="signup.err6pass"></span>
+          </p>
+
+          <!--<p class="fieldset">
+              <input type="checkbox" id="accept-terms">
+              <label for="accept-terms" class="text-dark">
+                <span data-i18n="signup.accept"></span>
+                <a class="ml-1 d-1 text-dark" href="#" data-i18n="signup.privacy"></a>
+              </label>
+            </p>-->
+            <div class="center-block loading-dark loading-signup display-false">
+              <div class="loading-dot bg-dark"></div>
+              <div class="loading-dot bg-dark"></div>
+              <div class="loading-dot bg-dark"></div>
+              <div class="loading-dot bg-dark"></div>
+            </div>
+          <p class="form-message-signup"></p>
+          <p class="fieldset">
+            <input class="full-width has-padding" data-i18n="[value]signup.submit" type="submit" value="">
+          </p>
+        </form>
+
+        <!-- <a href="#" class="cd-close-form">Close</a> -->
+      </div>
+
+      <div id="reset-password">
+        <p class="form-message" data-i18n="reset.head"></p>
+
+        <form class="form">
+          <p class="fieldset">
+            <label class="image-replace email" data-i18n="reset.email" for="reset-email"></label>
+            <input class="full-width has-padding has-border" data-i18n="[placeholder]reset.email" id="reset-email" type="email" placeholder="">
+            <span class="error-message" data-i18n="rest.noaccount"></span>
+          </p>
+
+          <div class="center-block loading-dark loading-reset display-false">
+            <div class="loading-dot bg-dark"></div>
+            <div class="loading-dot bg-dark"></div>
+            <div class="loading-dot bg-dark"></div>
+            <div class="loading-dot bg-dark"></div>
+          </div>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" data-i18n="[value]reset.submit" type="submit" value="">
+          </p>
+        </form>
+
+        <p class="form-bottom-message">
+          <a href="#" data-i18n="reset.relogin"></a>
+        </p>
+      </div>
+      <!--<a href="#" class="close-form">اغلاق</a>-->
+    </div>
+  </div>
+
+
+
+  <div class="bg"></div>
+  <footer class="footer py-2">
+    <div class="container h-100 my-auto">
+      <div class="row text-center bg-dark">
+        <div class="col-auto mx-auto p-0">
+          <p class="aprivacy">
+            <span class="text-sub">Mokalma.com © 2018 ·
+              <a href="/TOS" data-i18n="footer.tos" class="text-sub textaslink"></a> ·
+              <a href="/PP" data-i18n="footer.pp" class="text-sub textaslink"></a> ·
+              <a href="mailto:info@moklma.com" target="_blank" data-i18n="footer.contact" class="text-sub textaslink"></a>
+            </span>
+          </p>
+        </div>
+
+
+        <div class="col-auto mx-auto p-0">
+          <span class="lang">
+            <abbr title class="text-sub lang-en" data-lang="en">En</abbr> |
+            <abbr title class="text-sub lang-ar" data-lang="ar">عربي</abbr>
+          </span>
+        </div>
+
+        <div class="col-auto mx-auto p-0 my-1">
+          <a href="https://www.facebook.com/moklma" target="_blank">
+            <span class="fill-light">
+              <svg viewBox="0 0 64 64" width="16px" height="16px">
+                <path d="M58,15.8769531c-1.939846,0.8125-3.889843,1.4624996-6.1546898,1.625 c2.264843-1.3000011,3.889843-3.4023438,4.702343-5.8296881c-2.1023445,1.3000011-4.3773422,2.1023445-6.8046875,2.5898438 c-1.7773438-2.1023436-4.7023392-3.4023438-7.6171875-3.4023438c-5.8296852,0-10.6945305,4.7023439-10.6945305,10.6945333 c0,0.8125,0.1625023,1.625,0.3250008,2.4273415c-8.9070301-0.4874992-16.686718-4.702343-22.028904-11.1820297 c-0.9750004,1.625-1.4625006,3.4023438-1.4625006,5.342186c0,3.7273445,1.9398441,6.9671879,4.7023439,8.907032 c-1.7773438,0-3.4023438-0.4875011-4.8648434-1.3000011v0.1625004c0,5.1796875,3.7273436,9.3945312,8.5820303,10.3695335 c-0.9749994,0.1624985-1.7773428,0.3250008-2.7523432,0.3250008c-0.6499996,0-1.3000002,0-1.9398432-0.1625023 c1.3000002,4.2148438,5.342186,7.2921867,9.8820305,7.454689c-3.5648422,2.9148445-8.2570305,4.5398445-13.2843742,4.5398445 c-0.8125,0-1.7773438,0-2.5898438-0.1625023c4.702343,3.077343,10.3695316,4.8648453,16.3617191,4.8648453 c19.6015606,0,30.2960911-16.1992188,30.2960911-30.296093c0-0.4875011,0-0.9750004,0-1.3000011 C54.7601585,19.7566395,56.547657,17.9792976,58,15.8769531z"></path>
+              </svg>
+            </span>
+          </a>
+          <a href="https://www.twitter.com/moklmaa" target="_blank">
+            <span class="fill-light">
+              <svg viewBox="0 0 64 64" width="16px" height="16px">
+                <path d="M36.4625053,60H25.9625034V32h-7v-9.625h7v-5.6000004C25.9625053,8.7250004,28.0625057,4,37.3375053,4h7.6999969v9.625 h-4.8999977c-3.6749992,0-3.8500023,1.4000006-3.8500023,3.8500004V22.375h8.75l-0.875,9.625h-7.6999969V60z"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  
+<link href="css/mediaelementplayer.min.css" rel="stylesheet">
+<link href="css/bootstrap-slider.min.css" rel="stylesheet">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+  <!-- Parse.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/1.11.1/parse.min.js"></script>
+  <!-- Handlebars.js -->
+  <script src="js/mediaelement-and-player.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-slider.min.js"></script>
+  <script src="js/jungle.js"></script>
+  <script src="js/js.cookie.min.js"></script>
+
+  <script src="js/i18n/i18nextXHRBackend.min.js"></script>
+  <script src="js/i18n/i18next.min.js"></script>
+  <script src="js/i18n/jquery-i18next.min.js"></script>
+  <script src="js/i18n/i18nextLocalStorageCache.min.js"></script>
+
+  <script src="js/i18n/i18n.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="js/recorder.js"></script>
+  <script src="js/st.min.js"></script>
+  <script src="js/main.js"></script>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-122079296-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDtqM6O6jUXKIAJY91WGfdryXvFV2X0Eg8",
+    projectId: "tstore-1525166128684",
+    messagingSenderId: "337711436260"
+  };
+  firebase.initializeApp(config);
+</script>
+
+</body>
+
+</html>
