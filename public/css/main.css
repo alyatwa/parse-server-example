@@ -31,7 +31,7 @@ flex-direction: column;
     width: 100%;
     position: absolute;
     height: 100%;
-    background-image: url(../public/imgs/wavebg.svg);
+    background-image: url(/public/imgs/wavebg.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
