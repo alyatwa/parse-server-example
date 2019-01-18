@@ -56,7 +56,7 @@ $(document).ready(function () {
 
     Parse.$ = jQuery;
     Parse.initialize("microphone"); // Your App Name
-    Parse.serverURL = 'https://recapmag.com:50000/pg'; // Your Server URL
+    Parse.serverURL = 'https://moklma.herokuapp.com/parse'; // Your Server URL
   (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
