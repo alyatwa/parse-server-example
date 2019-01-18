@@ -7,7 +7,7 @@ $(document).ready(function () {
         preload: ['en', 'ar'],
         expirationTime: 1000,
         backend: {
-            loadPath: '../i18n/{{lng}}.json'
+            loadPath: '../public/i18n/{{lng}}.json'
         },
         fallbackLng: 'ar',
     }, function (err, t) {
