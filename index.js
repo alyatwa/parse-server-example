@@ -78,9 +78,10 @@ app.use(mountPath, api);
 // Parse Server plays nicely with the rest of your web routes
 // render configuration information for at root
 app.get( '/', function( req, res ) {
-  res.status(200).json( {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+  /*res.status(200).json( {
     'appName': process.env.APP_NAME,
-  } )
+  } )*/
 } )
 
 // There will be a test page available on the /test path of your server url
