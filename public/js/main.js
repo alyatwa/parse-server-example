@@ -653,7 +653,7 @@ $(document).ready(function () {
                 imgurl = Parse.User.current().get('img').url();
             } else {
                 img = "..."
-                imgurl = "../imgs/user.svg"
+                imgurl = "../public/imgs/user.svg"
             }
             var data = {
                 username: Parse.User.current().get('username'),
@@ -798,7 +798,7 @@ $(document).ready(function () {
             if (Parse.User.current().get('img')) {
                 img = Parse.User.current().get('img')._url
             } else {
-                img = '../imgs/user.svg'
+                img = '../public/imgs/user.svg'
             }
             MicApp.fn.renderView({
                 View: MicApp.Views.Welcome,
