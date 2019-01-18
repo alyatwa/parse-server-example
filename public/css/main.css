@@ -31,7 +31,7 @@ flex-direction: column;
     width: 100%;
     position: absolute;
     height: 100%;
-    background-image: url(../imgs/wavebg.svg);
+    background-image: url(../public/imgs/wavebg.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
@@ -41,13 +41,13 @@ a:link {
   text-decoration: none;
 }
 .card1-home{
-  background-image: url(/imgs/message.png);
+  background-image: url(/public/imgs/message.png);
   background-position: right;
   background-size: 141px;
   background-repeat: no-repeat;
 }
 .card2-home{
-  background-image: url(/imgs/person.png);
+  background-image: url(/public/imgs/person.png);
   background-position: left;
   background-size: 83px;
   background-position-x: 12px;
@@ -56,7 +56,7 @@ a:link {
 
 
 .app-card {
-  background-image: url(/imgs/appbg.png);
+  background-image: url(/public/imgs/appbg.png);
   background-position: right;
   background-repeat: no-repeat;
   background-position-y: -274px;
@@ -369,15 +369,15 @@ a {
 }
 
 .form label.username {
-  background-image: url("../imgs/cd-icon-username.svg");
+  background-image: url("../public/imgs/cd-icon-username.svg");
 }
 
 .form label.email {
-  background-image: url("../imgs/cd-icon-email.svg");
+  background-image: url("../public/imgs/cd-icon-email.svg");
 }
 
 .form label.password {
-  background-image: url("../imgs/cd-icon-password.svg");
+  background-image: url("../public/imgs/cd-icon-password.svg");
 }
 
 .form input {
