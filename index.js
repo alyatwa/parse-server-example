@@ -48,7 +48,7 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 
 
 const dashboard = new ParseDashboard( {
-  "allowInsecureHTTP": true,
+ // "allowInsecureHTTP": true,
   'apps': [
     {
       'serverURL': process.env.SERVER_URL,
