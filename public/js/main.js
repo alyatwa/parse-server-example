@@ -55,7 +55,7 @@ $(document).ready(function () {
 
 
     Parse.$ = jQuery;
-    Parse.initialize("microphone"); // Your App Name
+    Parse.initialize("microphone","myclientKey"); // Your App Name
     Parse.serverURL = 'https://moklma.herokuapp.com/parse'; // Your Server URL
   (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
