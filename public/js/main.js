@@ -980,10 +980,10 @@ $(document).ready(function () {
                 var siteName = i18next.t('head.sitename');
                 $('html head').find('title').text(user+' | '+siteName);
             });
-            MicApp.fn.renderView({
+            /MicApp.fn.renderView({
                 View: MicApp.Views.Load,
                 $container: MicApp.$conty
-            });        
+            });*/      
             MicApp.fn.checkLogin('notRequired');
             var query = new Parse.Query('PublicUser');
             query.equalTo("username", user); // find users that match
@@ -1005,9 +1005,9 @@ $(document).ready(function () {
                         console.log(data);
                         setHeadTags('user', {
                             username: e.get('username'),
-                            img: e.get('img')
+                            img: e.get('img')._url
                         });
-                        console.log(e.get('img'),e.get('username'));
+                        console.log(e.get('img')._url,e.get('username'));
                         MicApp.fn.renderView({
                             View: MicApp.Views.User,
                             data: {
