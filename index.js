@@ -90,6 +90,9 @@ app.get( '/firebase-messaging-sw.js', function( req, res ) {
 app.get( '/recorderWorkerMP3.js', function( req, res ) {
   res.sendFile(path.join(__dirname, '/public/js/recorderWorkerMP3.js'));
 } )
+app.get( '/libmp3lame.js', function( req, res ) {
+  res.sendFile(path.join(__dirname, '/public/js/libmp3lame.js'));
+} )
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app
