@@ -879,7 +879,7 @@ $(document).ready(function () {
         start: function () {
             Backbone.history.start({
                 root: '/',
-                //pushState: true
+                pushState: true
             });
         },
 
@@ -942,7 +942,7 @@ $(document).ready(function () {
                             if (e.get('img')) {
                                 img = e.get('img')._url
                             } else {
-                                img = '../imgs/user.svg'
+                                img = '../public/imgs/user.svg'
                             }
                         }
                         var date = new Date(record.get('createdAt'));
@@ -995,7 +995,7 @@ $(document).ready(function () {
                         if (e.get('img')) {
                             img = e.get('img')._url
                         } else {
-                            img = '../imgs/user.svg'
+                            img = '../public/imgs/user.svg'
                         }
                         var data = {
                             username: e.get('username'),
