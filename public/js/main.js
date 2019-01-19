@@ -980,10 +980,10 @@ $(document).ready(function () {
                 var siteName = i18next.t('head.sitename');
                 $('html head').find('title').text(user+' | '+siteName);
             });
-            /*MicApp.fn.renderView({
+            MicApp.fn.renderView({
                 View: MicApp.Views.Load,
                 $container: MicApp.$conty
-            });*/      
+            });   
             MicApp.fn.checkLogin('notRequired');
             var query = new Parse.Query('PublicUser');
             query.equalTo("username", user); // find users that match
