@@ -369,15 +369,15 @@ a {
 }
 
 .form label.username {
-  background-image: url("../public/imgs/cd-icon-username.svg");
+  background-image: url("/public/imgs/cd-icon-username.svg");
 }
 
 .form label.email {
-  background-image: url("../public/imgs/cd-icon-email.svg");
+  background-image: url("/public/imgs/cd-icon-email.svg");
 }
 
 .form label.password {
-  background-image: url("../public/imgs/cd-icon-password.svg");
+  background-image: url("/public/imgs/cd-icon-password.svg");
 }
 
 .form input {
