@@ -989,7 +989,7 @@ $(document).ready(function () {
             query.equalTo("username", user); // find users that match
             query.first({
                 success: function (e) {
-                    getMicPermission();
+                    //getMicPermission();
                     if (e) {
                         var img;
                         if (e.get('img')) {
@@ -1279,7 +1279,7 @@ $(document).ready(function () {
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
         window.URL = window.URL || window.webkitURL || window.mozURL;
 
-        audio_context = new AudioContext();
+        //audio_context = new AudioContext();
     } catch (e) {
         console.warn('No web audio support in this browser!');
         ga('send', 'exception', {
@@ -1298,6 +1298,7 @@ $(document).ready(function () {
         video: false
     };
     function getMicPermission() {
+    audio_context = new AudioContext();
     navigator.getUserMedia(constraints, startUserMedia, function (e) {
         console.warn('No live audio input: ' + e);
         ga('send', 'exception', {
@@ -1354,7 +1355,7 @@ $(document).ready(function () {
         });
 
         $recordbtn.on('click', function (e) {
-            audio_context = new AudioContext();
+            getMicPermission();
             if ($recordbtn.attr('data-recording') == 'false') {
                 $box.css({
                     'pointer-events': 'none',
