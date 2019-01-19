@@ -1,4 +1,4 @@
-importScripts('libmp3lame.js');
+importScripts('../pulic/js/libmp3lame.js');
 
 var mp3codec,
   recBuffers = [],
