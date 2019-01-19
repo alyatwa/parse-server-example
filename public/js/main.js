@@ -1002,10 +1002,12 @@ $(document).ready(function () {
                             img: img,
                             id: e.get('userId')
                         }
+                        console.log(data);
                         setHeadTags('user', {
                             username: e.get('username'),
                             img: e.get('img')
                         });
+                        console.log(e.get('img'),e.get('username'));
                         MicApp.fn.renderView({
                             View: MicApp.Views.User,
                             data: {
@@ -1013,6 +1015,7 @@ $(document).ready(function () {
                             },
                             $container: MicApp.$conty
                         });
+                        
                         startRecord();
                     } else {
                         console.log('No user found');
