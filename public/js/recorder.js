@@ -1,5 +1,5 @@
 (function(window){
-                  var WORKER_MP3_PATH,WORKER_WAV_PATH='/recorderWorkerMP3.js';
+                  var WORKER_MP3_PATH,WORKER_WAV_PATH='recorderWorkerMP3.js';
                   var Recorder=function(source,cfg){var config=cfg||{};
                   var bufferLen=config.bufferLen||4096;
                   var numChannels=config.numChannels||2;
