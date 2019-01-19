@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('../public/firebase-messaging-sw.js').then(function (registration) {
+            navigator.serviceWorker.register('/public/firebase-messaging-sw.js').then(function (registration) {
                 scope: '.'
                 // Registration was successful
                 //console.log('ServiceWorker registration successful with scope: ', registration.scope);
