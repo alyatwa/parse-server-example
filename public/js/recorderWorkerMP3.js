@@ -1,4 +1,4 @@
-importScripts('../public/js/libmp3lame.js');
+importScripts('/libmp3lame.js');
 
 var mp3codec,
   recBuffers = [],
