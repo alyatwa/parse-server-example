@@ -254,7 +254,7 @@ $(document).ready(function () {
         },
         copy: function () {
             var username = this.collection.username;
-            var link = window.location.hostname + '/' + username;
+            var link = window.location.protocol+'//'+window.location.hostname + '/' + username;
             var copiedLink = window.location.protocol +'//'+ window.location.hostname + '/' + username;
             navigator.clipboard.writeText(copiedLink).then(function () {
                 $('.toast').css({
