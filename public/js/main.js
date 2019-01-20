@@ -1343,6 +1343,7 @@ $(document).ready(function () {
         $slider.addClass("col-10");
         $removebtn.on('click', function (e) {
             console.log('remove record');
+            $('audio').attr("src", "sample.mp3");
             sound = document.querySelector("audio");
             sound.pause();
             sound.currentTime = 0;
