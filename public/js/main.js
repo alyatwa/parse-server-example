@@ -1299,6 +1299,7 @@ $(document).ready(function () {
     };
     function getMicPermission() {
     audio_context = new AudioContext();
+        getJungle();
     navigator.getUserMedia(constraints, startUserMedia, function (e) {
         console.warn('No live audio input: ' + e);
         ga('send', 'exception', {
