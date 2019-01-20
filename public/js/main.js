@@ -270,7 +270,7 @@ $(document).ready(function () {
                             $('.toast').css({
                                 'display': 'none'
                             });
-                            document.location=link;
+                            document.location="/"+username;
                         });
                     }, 500);
                 });
