@@ -1356,14 +1356,14 @@ $(document).ready(function () {
         });
 
         $recordbtn.on('click', function (e) {
-            startUserMedia();
+            getMicPermission();
             
             if ($recordbtn.attr('data-recording') == 'false') {
                 $box.css({
                     'pointer-events': 'none',
                     'opacity': .7
                 });
-                ctxx(audio_context,"start");
+                if (audio_context) {ctxx(audio_context,"start");}
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
