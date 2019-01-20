@@ -282,6 +282,7 @@ $(document).ready(function () {
                 webapp: window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true,
                 username: this.collection.username,
                 url: window.location.protocol+'//'+document.location.host + '/' + this.collection.username,
+                urltxt: document.location.host + '/' + this.collection.username,
                 msgcount: Parse.User.current().get('new'),
                 lang: (Cookies.get('language') == 'en') ? true : false,
                 imgurl: this.collection.url
