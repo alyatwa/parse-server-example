@@ -270,9 +270,9 @@ $(document).ready(function () {
                             $('.toast').css({
                                 'display': 'none'
                             });
-                            window.location.href('/' + username)
+                            window.location.href(link)
                         });
-                    }, 1000);
+                    }, 500);
                 });
             });
 
