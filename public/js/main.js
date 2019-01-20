@@ -1362,7 +1362,7 @@ $(document).ready(function () {
                     'pointer-events': 'none',
                     'opacity': .7
                 });
-                function ctxx(audio_context);
+                ctxx(audio_context);
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
@@ -1381,7 +1381,7 @@ $(document).ready(function () {
                     'pointer-events': 'unset',
                     'opacity': 1
                 });
-                function ctxx(audio_context);
+                ctxx(audio_context);
                 $recordbtn.attr('data-recording', false);
                 $recordbtn.removeClass("recording");
                 $recordbtntext.removeClass("record-btn-text");
