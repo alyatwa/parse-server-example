@@ -1408,11 +1408,11 @@ $(document).ready(function () {
         function ctxx(audioCtx) {
   if(audioCtx.state === 'running') {
     audioCtx.suspend().then(function() {
-      console.log('Resume context');
+      console.log('paused context');
     });
   } else if(audioCtx.state === 'suspended') {
     audioCtx.resume().then(function() {
-      console.log('Suspend context');
+      console.log('resumed context');
     });  
   }
 }
