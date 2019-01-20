@@ -1362,6 +1362,7 @@ $(document).ready(function () {
                     'pointer-events': 'none',
                     'opacity': .7
                 });
+                function ctxx(audio_context);
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
@@ -1380,6 +1381,7 @@ $(document).ready(function () {
                     'pointer-events': 'unset',
                     'opacity': 1
                 });
+                function ctxx(audio_context);
                 $recordbtn.attr('data-recording', false);
                 $recordbtn.removeClass("recording");
                 $recordbtntext.removeClass("record-btn-text");
@@ -1403,6 +1405,17 @@ $(document).ready(function () {
                 });
             }
         });
+        function ctxx(audioCtx) {
+  if(audioCtx.state === 'running') {
+    audioCtx.suspend().then(function() {
+      console.log('Resume context');
+    });
+  } else if(audioCtx.state === 'suspended') {
+    audioCtx.resume().then(function() {
+      console.log('Suspend context');
+    });  
+  }
+}
         $sendbtn.on('click', function (e) {
             console.log('send');
             sound.pause();
