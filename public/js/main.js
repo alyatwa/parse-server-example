@@ -1320,7 +1320,8 @@ $(document).ready(function () {
         var input = audio_context.createMediaStreamSource(stream);
         mediaRecorder = stream;
         recorder = new Recorder(input);
-        console.log('Recorder initialised.');
+        recorder.record();
+        console.log('Recorder initialised   + audioCTX  ',audio_context);
     }
 
     function startRecord() {
