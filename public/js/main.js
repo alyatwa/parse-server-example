@@ -1299,7 +1299,6 @@ $(document).ready(function () {
     };
     function getMicPermission() {
     audio_context = new AudioContext();
-        getJungle();
     navigator.getUserMedia(constraints, startUserMedia, function (e) {
         console.warn('No live audio input: ' + e);
         ga('send', 'exception', {
@@ -1316,11 +1315,12 @@ $(document).ready(function () {
     });
 
     function startUserMedia(stream) {
+        audio_context = new AudioContext();
         console.log('Using audio mic: ' + stream.getAudioTracks()[0].label);
         var input = audio_context.createMediaStreamSource(stream);
         mediaRecorder = stream;
         recorder = new Recorder(input);
-        //console.log('Recorder initialised.');
+        console.log('Recorder initialised.');
     }
 
     function startRecord() {
