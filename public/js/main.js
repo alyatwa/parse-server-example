@@ -1357,7 +1357,7 @@ $(document).ready(function () {
         });
 
         $recordbtn.on('click', function (e) {
-            getMicPermission();
+            if (!audio_context){getMicPermission();}
             
             if ($recordbtn.attr('data-recording') == 'false') {
                 $box.css({
