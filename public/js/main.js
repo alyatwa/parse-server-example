@@ -1298,7 +1298,7 @@ $(document).ready(function () {
         video: false
     };
     function getMicPermission() {
-    audio_context = new AudioContext();
+    //audio_context = new AudioContext();
     navigator.getUserMedia(constraints, startUserMedia, function (e) {
         console.warn('No live audio input: ' + e);
         ga('send', 'exception', {
@@ -1357,12 +1357,13 @@ $(document).ready(function () {
 
         $recordbtn.on('click', function (e) {
             getMicPermission();
+            
             if ($recordbtn.attr('data-recording') == 'false') {
                 $box.css({
                     'pointer-events': 'none',
                     'opacity': .7
                 });
-                ctxx(audio_context);
+                ctxx(audio_context,"start");
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
@@ -1377,11 +1378,11 @@ $(document).ready(function () {
                     eventLabel: 'record start'
                 });
             } else {
+                ctxx(audio_context,"pause");
                 $box.css({
                     'pointer-events': 'unset',
                     'opacity': 1
                 });
-                ctxx(audio_context);
                 $recordbtn.attr('data-recording', false);
                 $recordbtn.removeClass("recording");
                 $recordbtntext.removeClass("record-btn-text");
@@ -1405,12 +1406,12 @@ $(document).ready(function () {
                 });
             }
         });
-        function ctxx(audioCtx) {
-  if(audioCtx.state === 'running') {
+        function ctxx(audioCtx,state) {
+  if(state === 'pause') {
     audioCtx.suspend().then(function() {
       console.log('paused context');
     });
-  } else if(audioCtx.state === 'suspended') {
+  } else if(state === 'start') {
     audioCtx.resume().then(function() {
       console.log('resumed context');
     });  
