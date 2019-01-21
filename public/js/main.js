@@ -1366,7 +1366,7 @@ $(document).ready(function () {
         });
 
         $recordbtn.on('click', function (e) {
-            if (!audio_context){
+            if (!audio_context || audio_context.state === "closed"){
                 console.log('!audio_context',audio_context);
                 getMicPermission();}
             else {
