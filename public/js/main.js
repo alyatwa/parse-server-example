@@ -1366,7 +1366,12 @@ $(document).ready(function () {
         });
 
         $recordbtn.on('click', function (e) {
-            if (!audio_context){getMicPermission();}
+            if (!audio_context){
+                console.log('!audio_context',audio_context);
+                getMicPermission();}
+            else {
+                console.log('else',audio_context);
+                }
             
             if ($recordbtn.attr('data-recording') == 'false') {
                 // Start Recording .....
