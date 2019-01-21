@@ -1344,6 +1344,8 @@ $(document).ready(function () {
         $removebtn.on('click', function (e) {
             console.log('remove record');
             $('audio').attr("src", "/public/assets/sample.mp3");
+            $('.mejs__time-current').css({'transform': 'scaleX(0)'});
+            $('.mejs__duration').text('00:00');
             sound = document.querySelector("audio");
             sound.pause();
             sound.currentTime = 0;
