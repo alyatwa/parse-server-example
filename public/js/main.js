@@ -1355,9 +1355,9 @@ $(document).ready(function () {
             });
             recorder.clear();
             $recordbtntext.text(i18next.t('user.start'));
-            navigator.getUserMedia(constraints, startUserMedia, function (e) {
+            /*navigator.getUserMedia(constraints, startUserMedia, function (e) {
                 console.warn('No live audio input: ' + e);
-            });
+            });*/
         });
 
         $recordbtn.on('click', function (e) {
