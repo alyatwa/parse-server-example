@@ -1345,8 +1345,8 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-            audio_context.close().then(function() {
-            console.log('Context Removed');
+            audio_context.close().then(function(s) {
+            console.log('Context Removed', s);
                 });
             $('audio').attr("src", "/public/assets/sample.mp3");
             $('.mejs__time-current').css({'transform': 'scaleX(0)'});
@@ -1369,6 +1369,7 @@ $(document).ready(function () {
             if (!audio_context){getMicPermission();}
             
             if ($recordbtn.attr('data-recording') == 'false') {
+                // Start Recording .....
                 $box.css({
                     'pointer-events': 'none',
                     'opacity': .7
@@ -1388,6 +1389,7 @@ $(document).ready(function () {
                     eventLabel: 'record start'
                 });
             } else {
+                // Paused
                 ctxx(audio_context,"pause");
                 $box.css({
                     'pointer-events': 'unset',
