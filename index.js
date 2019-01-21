@@ -109,5 +109,8 @@ httpServer.listen(port, function(e) {
     console.log('server: '+httpServer.address().address+' # parse-server-example running on port ' + port + '.');
 });
 
+setInterval(function() {
+    httpServer.get("https://moklma.herokuapp.com");
+}, 300000);
 // This will enable the Live Query real-time server
 ParseServer.createLiveQueryServer(httpServer);
