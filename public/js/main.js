@@ -1341,8 +1341,13 @@ $(document).ready(function () {
             $recordbtntext = $('small.record-btn-text');
 
         $slider.addClass("col-10");
+        
+        //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
-            console.log('remove record');
+            console.log('Remove record Btn');
+            audio_context.close().then(function() {
+            console.log('Context Removed');
+                });
             $('audio').attr("src", "/public/assets/sample.mp3");
             $('.mejs__time-current').css({'transform': 'scaleX(0)'});
             $('.mejs__duration').text('00:00');
