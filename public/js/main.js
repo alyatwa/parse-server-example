@@ -1379,7 +1379,7 @@ $(document).ready(function () {
                     'pointer-events': 'none',
                     'opacity': .7
                 });
-                if (audio_context) {ctxx(audio_context,"start");}
+                if (audio_context.state != "closed) {ctxx(audio_context,"start");}
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
