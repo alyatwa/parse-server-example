@@ -1365,9 +1365,79 @@ $(document).ready(function () {
             });*/
         });
 
+        
+        //Timer
+        var CountDown = (function ($) {
+    // Length ms 
+    var TimeOut = 10000;
+    // Interval ms
+    var TimeGap = 1000;
+    
+    var CurrentTime = ( new Date() ).getTime();
+    var EndTime = ( new Date() ).getTime() + TimeOut;
+    
+    /*var GuiTimer = $('#countdown');
+    var GuiPause = $('#pause');
+    var GuiResume = $('#resume').hide();*/
+    
+    var Running = true;
+    
+    var UpdateTimer = function() {
+        // Run till timeout
+        if( CurrentTime + TimeGap < EndTime ) {
+            setTimeout( UpdateTimer, TimeGap );
+        }
+        // Countdown if running
+        if( Running ) {
+            CurrentTime += TimeGap;
+            if( CurrentTime >= EndTime ) {
+               // GuiTimer.css('color','red');
+            }
+        }
+        // Update Gui
+        var Time = new Date();
+        Time.setTime( EndTime - CurrentTime );
+        var Minutes = Time.getMinutes();
+        var Seconds = Time.getSeconds();
+        var per = ((Time/(EndTime + CurrentTime))*Math.pow(10,10));
+        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) ${per}%, rgba(255,0,0,1) 0%)'})
+        /*GuiTimer.html( 
+            (Minutes < 10 ? '0' : '') + Minutes 
+            + ':' 
+            + (Seconds < 10 ? '0' : '') + Seconds );
+          };*/
+    
+    var Pause = function() {
+        Running = false;
+        /*GuiPause.hide();
+        GuiResume.show();*/
+    };
+    
+    var Resume = function() {
+        Running = true;
+        /*GuiPause.show();
+        GuiResume.hide();*/
+    };
+    
+    var Start = function( Timeout ) {
+        TimeOut = Timeout;
+        CurrentTime = ( new Date() ).getTime();
+        EndTime = ( new Date() ).getTime() + TimeOut;
+        UpdateTimer();
+    };
+
+    return {
+        Pause: Pause,
+        Resume: Resume,
+        Start: Start
+    };
+})(jQuery);
+        
+        var newTimer = true;
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('!audio_context',audio_context);
+                CountDown.Start(1000*60);
                 getMicPermission();}
             else {
                 console.log('else',audio_context);
@@ -1382,7 +1452,7 @@ $(document).ready(function () {
                 if (audio_context) {
                   if (audio_context.state != "closed") {ctxx(audio_context,"start");} 
                 }
-                
+                $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(255,0,0,1) 0%)'})
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
@@ -1428,10 +1498,12 @@ $(document).ready(function () {
         });
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
+      CountDown.Pause
     audioCtx.suspend().then(function() {
       console.log('paused context');
     });
   } else if(state === 'start') {
+      CountDown.Resume
     audioCtx.resume().then(function() {
       console.log('resumed context');
     });  
