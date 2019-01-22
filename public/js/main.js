@@ -1404,8 +1404,8 @@ $(document).ready(function () {
         /*GuiTimer.html( 
             (Minutes < 10 ? '0' : '') + Minutes 
             + ':' 
-            + (Seconds < 10 ? '0' : '') + Seconds );
-          };*/
+            + (Seconds < 10 ? '0' : '') + Seconds );*/
+          };
     
     var Pause = function() {
         Running = false;
