@@ -1400,8 +1400,10 @@ $(document).ready(function () {
         Time.setTime( EndTime - CurrentTime );
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
-        var per = ((Time/(EndTime + CurrentTime))*Math.pow(10,10));
-        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) ${per}%, rgba(255,0,0,1) 0%)'})
+        var curr = Time.getSeconds()+(Time.getMinutes()*60);
+        var total = TimeOut/1000;
+        var per = ((curr/(total))*Math.pow(10,2));
+        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
         /*GuiTimer.html( 
             (Minutes < 10 ? '0' : '') + Minutes 
             + ':' 
