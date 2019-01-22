@@ -1345,6 +1345,7 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
+             $('.record-btn').css({'background-image': ''})
             audio_context.close().then(function(s) {
             console.log('Context Removed', s);
                 });
@@ -1452,7 +1453,7 @@ $(document).ready(function () {
                 if (audio_context) {
                   if (audio_context.state != "closed") {ctxx(audio_context,"start");} 
                 }
-                $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(255,0,0,1) 0%)'})
+               // $('.record-btn').css({'background-image': ''})
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
