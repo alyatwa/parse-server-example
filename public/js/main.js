@@ -1324,49 +1324,6 @@ $(document).ready(function () {
         recorder.record();
         console.log('Recorder initialised   + audioCTX  ',audio_context);
     }
-
-    function startRecord() {
-        var $level = $("input.level").slider({
-                value: 50,
-                min: -100,
-                max: 100
-            }),
-            $slider = $('.slider'),
-            $box = $(".record-box"),
-            $loading = $(".loading"),
-            $loadingtext = $(".loading-text"),
-            $recordbtn = $('button.record-btn'),
-            $removebtn = $('.remove'),
-            $sendbtn = $('.send'),
-            $recordbtntext = $('small.record-btn-text');
-
-        $slider.addClass("col-10");
-        
-        //Clear Record & Close AudioContext
-        $removebtn.on('click', function (e) {
-            console.log('Remove record Btn');
-             $('.record-btn').css({'background-image': ''})
-            audio_context.close().then(function(s) {
-            console.log('Context Removed', s);
-                });
-            $('audio').attr("src", "/public/assets/sample.mp3");
-            $('.mejs__time-current').css({'transform': 'scaleX(0)'});
-            $('.mejs__duration').text('00:00');
-            sound = document.querySelector("audio");
-            sound.pause();
-            sound.currentTime = 0;
-            $box.css({
-                'pointer-events': 'none',
-                'opacity': .7
-            });
-            recorder.clear();
-            $recordbtntext.text(i18next.t('user.start'));
-            /*navigator.getUserMedia(constraints, startUserMedia, function (e) {
-                console.warn('No live audio input: ' + e);
-            });*/
-        });
-
-        
         //Timer
         var CountDown = (function ($) {
     // Length ms 
@@ -1435,8 +1392,50 @@ $(document).ready(function () {
         Start: Start
     };
 })(jQuery);
+    function startRecord() {
+        var $level = $("input.level").slider({
+                value: 50,
+                min: -100,
+                max: 100
+            }),
+            $slider = $('.slider'),
+            $box = $(".record-box"),
+            $loading = $(".loading"),
+            $loadingtext = $(".loading-text"),
+            $recordbtn = $('button.record-btn'),
+            $removebtn = $('.remove'),
+            $sendbtn = $('.send'),
+            $recordbtntext = $('small.record-btn-text');
+
+        $slider.addClass("col-10");
         
-        var newTimer = true;
+        //Clear Record & Close AudioContext
+        $removebtn.on('click', function (e) {
+            console.log('Remove record Btn');
+             $('.record-btn').css({'background-image': ''})
+            audio_context.close().then(function(s) {
+            console.log('Context Removed', s);
+                });
+            $('audio').attr("src", "/public/assets/sample.mp3");
+            $('.mejs__time-current').css({'transform': 'scaleX(0)'});
+            $('.mejs__duration').text('00:00');
+            sound = document.querySelector("audio");
+            sound.pause();
+            sound.currentTime = 0;
+            $box.css({
+                'pointer-events': 'none',
+                'opacity': .7
+            });
+            recorder.clear();
+            $recordbtntext.text(i18next.t('user.start'));
+            /*navigator.getUserMedia(constraints, startUserMedia, function (e) {
+                console.warn('No live audio input: ' + e);
+            });*/
+        });
+
+        
+
+        
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('!audio_context',audio_context);
