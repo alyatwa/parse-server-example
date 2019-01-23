@@ -1356,7 +1356,7 @@ $(document).ready(function () {
         var Seconds = Time.getSeconds();
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
-        var per = Math.floor((curr/(total))*Math.pow(10,2));
+        var per = Math.floor((curr/total)*100);
         $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
         
           };
