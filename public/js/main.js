@@ -1325,7 +1325,7 @@ $(document).ready(function () {
         console.log('Recorder initialised   + audioCTX  ',audio_context);
     }
         //Timer
-        var CountDown = (function ($) {
+        var CountDown = function () {
     // Length ms 
     var TimeOut = 10000;
     // Interval ms
@@ -1333,10 +1333,6 @@ $(document).ready(function () {
     
     var CurrentTime = ( new Date() ).getTime();
     var EndTime = ( new Date() ).getTime() + TimeOut;
-    
-    /*var GuiTimer = $('#countdown');
-    var GuiPause = $('#pause');
-    var GuiResume = $('#resume').hide();*/
     
     var Running = true;
     
@@ -1361,10 +1357,7 @@ $(document).ready(function () {
         var total = TimeOut/1000;
         var per = ((curr/(total))*Math.pow(10,2));
         $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
-        /*GuiTimer.html( 
-            (Minutes < 10 ? '0' : '') + Minutes 
-            + ':' 
-            + (Seconds < 10 ? '0' : '') + Seconds );*/
+        
           };
     
     var Pause = function() {
@@ -1391,7 +1384,9 @@ $(document).ready(function () {
         Resume: Resume,
         Start: Start
     };
-})(jQuery);
+}
+        var timer = new CountDown();
+    
     function startRecord() {
         var $level = $("input.level").slider({
                 value: 50,
@@ -1439,7 +1434,7 @@ $(document).ready(function () {
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('!audio_context',audio_context);
-                CountDown.Start(1000*60);
+                timer.Start(1000*60);
                 getMicPermission();}
             else {
                 console.log('else',audio_context);
@@ -1500,12 +1495,12 @@ $(document).ready(function () {
         });
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
-      CountDown.Pause
+      timer.Pause()
     audioCtx.suspend().then(function() {
       console.log('paused context');
     });
   } else if(state === 'start') {
-      CountDown.Resume
+      timer.Resume();
     audioCtx.resume().then(function() {
       console.log('resumed context');
     });  
