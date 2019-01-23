@@ -1413,10 +1413,10 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
+            timer = undefined;
             $('.record-btn').css({'background-image': 'unset'})
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
-            $('.record-btn').css({'background-image': 'unset'})
             audio_context.close().then(function(s) {
             console.log('Context Removed', s);
                 });
