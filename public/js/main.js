@@ -1460,7 +1460,7 @@ $(document).ready(function () {
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
-                //$recordbtntext.removeClass("text-sub");
+                $recordbtntext.removeClass("text-sub");
                 $recordbtntext.text(i18next.t('user.pause'));
                 recorder && recorder.record();
                 sound.pause();
