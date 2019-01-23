@@ -1388,7 +1388,7 @@ $(document).ready(function () {
 }
     
         
-    var timer = new CountDown();
+    var timer;
     
     function stopRecord() {
             $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
@@ -1443,6 +1443,7 @@ $(document).ready(function () {
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('!audio_context',audio_context);
+                timer = new CountDown();
                 timer.Start(1000*60);
                 getMicPermission();}
             else {
