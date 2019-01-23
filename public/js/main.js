@@ -1413,7 +1413,10 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-             $('.record-btn').css({'background-image': 'unset'})
+            $('.record-btn').css({'background-image': 'unset'})
+            $recordbtntext.text(i18next.t('user.start'));
+            $recordbtntext.addClass("text-sub");
+            $('.record-btn').css({'background-image': 'unset'})
             audio_context.close().then(function(s) {
             console.log('Context Removed', s);
                 });
@@ -1428,7 +1431,7 @@ $(document).ready(function () {
                 'opacity': .7
             });
             recorder.clear();
-            $recordbtntext.text(i18next.t('user.start'));
+            
             /*navigator.getUserMedia(constraints, startUserMedia, function (e) {
                 console.warn('No live audio input: ' + e);
             });*/
@@ -1482,7 +1485,7 @@ $(document).ready(function () {
                 $recordbtn.removeClass("recording");
                 $recordbtn.css({'background-color':'unset'});
                 //$recordbtntext.removeClass("record-btn-text");
-                //$recordbtntext.addClass("text-sub");
+                $recordbtntext.removeClass("text-sub");
                 $recordbtntext.text(i18next.t('user.continue'));
                 recorder && recorder.stop();
                 recorder && recorder.exportAudio(function (blob) {
