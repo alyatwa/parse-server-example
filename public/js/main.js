@@ -1386,8 +1386,13 @@ $(document).ready(function () {
         Start: Start
     };
 }
-        var timer = new CountDown();
     
+        
+    var timer = new CountDown();
+    
+    function stopRecord() {
+            $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
+     }
     function startRecord() {
         var $level = $("input.level").slider({
                 value: 50,
@@ -1404,12 +1409,6 @@ $(document).ready(function () {
             $recordbtntext = $('small.record-btn-text');
 
         $slider.addClass("col-10");
-        
-        
-        
-        function stopRecord() {
-            $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
-        }
         
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
@@ -1457,6 +1456,7 @@ $(document).ready(function () {
                   if (audio_context.state != "closed") {ctxx(audio_context,"start");} 
                 }
                // $('.record-btn').css({'background-image': ''})
+                $recordbtn.css({'background-color':'#000'});
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
