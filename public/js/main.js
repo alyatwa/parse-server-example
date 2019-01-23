@@ -1478,6 +1478,7 @@ $(document).ready(function () {
                     'opacity': 1
                 });
                 $recordbtn.attr('data-recording', false);
+                $recordbtn.addClass("btn-paused");
                 $recordbtn.removeClass("recording");
                 $recordbtn.css({'background-color':'unset'});
                 $recordbtntext.removeClass("record-btn-text");
