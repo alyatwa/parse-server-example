@@ -1346,6 +1346,7 @@ $(document).ready(function () {
             CurrentTime += TimeGap;
             if( CurrentTime >= EndTime ) {
                // GuiTimer.css('color','red');
+               stopRecord();
             }
         }
         // Update Gui
@@ -1404,10 +1405,16 @@ $(document).ready(function () {
 
         $slider.addClass("col-10");
         
+        
+        
+        function stopRecord() {
+            $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
+        }
+        
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-             $('.record-btn').css({'background-image': ''})
+             $('.record-btn').css({'background-image': 'unset'})
             audio_context.close().then(function(s) {
             console.log('Context Removed', s);
                 });
@@ -1472,6 +1479,7 @@ $(document).ready(function () {
                 });
                 $recordbtn.attr('data-recording', false);
                 $recordbtn.removeClass("recording");
+                $recordbtn.css({'background-color':'unset'});
                 $recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.addClass("text-sub");
                 $recordbtntext.text(i18next.t('user.continue'));
