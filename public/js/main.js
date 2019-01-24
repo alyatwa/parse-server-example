@@ -1502,7 +1502,7 @@ $(document).ready(function () {
                 $recordbtn.attr('data-recording', false);
                 $recordbtn.addClass("btn-paused");
                 $recordbtn.removeClass("recording");
-                $recordbtn.css({'background-color':'unset'});
+                $recordbtn.css({'background-color':'unset','white-space': 'inherit'});
                 //$recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
                 $recordbtntext.text(i18next.t('user.continue'));
