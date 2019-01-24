@@ -1361,7 +1361,8 @@ $(document).ready(function () {
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
         txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds;
-        console.log("txtTimer: ", txtTimer);
+        $recordbtntext.text(i18next.t('user.pause') + txtTimer);
+        //console.log("txtTimer: ", txtTimer);
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
@@ -1371,8 +1372,6 @@ $(document).ready(function () {
     
     var Pause = function() {
         Running = false;
-        /*GuiPause.hide();
-        GuiResume.show();*/
     };
     
     var Resume = function() {
@@ -1382,8 +1381,6 @@ $(document).ready(function () {
     var Stop = function() {
         Running = false;
         Stopp = true;
-        //UpdateTimer = undefined;
-        //$('.record-btn').css({'background-image': 'unset'});
     };
     
     var Start = function( Timeout ) {
@@ -1428,9 +1425,8 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-            //timer = undefined;
+            
             timer.Stop();
-            //$('.record-btn').css({'background-image': 'unset'})
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
