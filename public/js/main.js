@@ -1364,10 +1364,8 @@ $(document).ready(function () {
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
         txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds;
-        $('button.record-btn').append(`<br><small class="record-btn-text count-time"></small>`);
         $('small.count-time').text(txtTimer);
-        //$('.record-btn-text').text(i18next.t('user.pause') + txtTimer);
-        //console.log("txtTimer: ", txtTimer);
+        
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
@@ -1434,15 +1432,16 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-            
             timer.Stop();
             $('small.count-time').text('');
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
+            
             audio_context.close().then(function(s) {
             console.log('Context Removed', s);
                 });
+            
             $('audio').attr("src", "/public/assets/sample.mp3");
             $('.mejs__time-current').css({'transform': 'scaleX(0)'});
             $('.mejs__duration').text('00:00');
@@ -1459,13 +1458,10 @@ $(document).ready(function () {
                 console.warn('No live audio input: ' + e);
             });*/
         });
-
-        
-
-        
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('audioContext Closed || NAN');
+                $('button.record-btn').append(`<br><small class="record-btn-text count-time"></small>`);
                 timer = new CountDown();
                 timer.Start(1000*60);
                 getMicPermission();}
