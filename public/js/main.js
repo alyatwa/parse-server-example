@@ -1434,7 +1434,7 @@ $(document).ready(function () {
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
             timer.Stop();
-            $('small.count-time').remove();
+            $('span.count-time').remove();
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
