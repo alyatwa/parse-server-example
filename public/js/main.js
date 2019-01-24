@@ -1483,7 +1483,7 @@ $(document).ready(function () {
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.pause') + timer.Counter();
+                $recordbtntext.text(i18next.t('user.pause') + timer.Counter());
                 recorder && recorder.record();
                 sound.pause();
                 ga('send', {
