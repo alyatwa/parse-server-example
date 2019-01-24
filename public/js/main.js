@@ -1333,6 +1333,7 @@ $(document).ready(function () {
     var Stopp = false;
     var CurrentTime = ( new Date() ).getTime();
     var EndTime = ( new Date() ).getTime() + TimeOut;
+        var txtTimer;
     
     var Running = true;
     
@@ -1359,6 +1360,7 @@ $(document).ready(function () {
         Time.setTime( EndTime - CurrentTime );
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
+        txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
@@ -1380,7 +1382,7 @@ $(document).ready(function () {
         Running = false;
         Stopp = true;
         //UpdateTimer = undefined;
-        $('.record-btn').css({'background-image': 'unset'});
+        //$('.record-btn').css({'background-image': 'unset'});
     };
     
     var Start = function( Timeout ) {
@@ -1426,7 +1428,7 @@ $(document).ready(function () {
             console.log('Remove record Btn');
             //timer = undefined;
             timer.Stop();
-            $('.record-btn').css({'background-image': 'unset'})
+            //$('.record-btn').css({'background-image': 'unset'})
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
@@ -1478,7 +1480,7 @@ $(document).ready(function () {
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.pause'));
+                $recordbtntext.text(i18next.t('user.pause') + timer.txtTimer);
                 recorder && recorder.record();
                 sound.pause();
                 ga('send', {
@@ -1500,7 +1502,7 @@ $(document).ready(function () {
                 $recordbtn.css({'background-color':'unset'});
                 //$recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.continue'));
+                $recordbtntext.text(i18next.t('user.continue')+timer.txtTimer);
                 recorder && recorder.stop();
                 recorder && recorder.exportAudio(function (blob) {
                     var url = URL.createObjectURL(blob);
