@@ -1338,6 +1338,8 @@ $(document).ready(function () {
     
     var UpdateTimer = function() {
         if (Stopp) {
+            console.log("stop: ", Stopp,"    run: ", Running);
+            $('.record-btn').css({'background-image': 'unset'});
         return;
         }
         // Run till timeout
