@@ -1424,8 +1424,8 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-            timer = undefined;
-            //timer.Stop();
+            //timer = undefined;
+            timer.Stop();
             $('.record-btn').css({'background-image': 'unset'})
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
