@@ -1373,7 +1373,7 @@ $(document).ready(function () {
     
     var Stop = function() {
         Running = false;
-        UpdateTimer = undefined;
+        //UpdateTimer = undefined;
         $('.record-btn').css({'background-image': 'unset'});
     };
     
@@ -1420,6 +1420,7 @@ $(document).ready(function () {
             console.log('Remove record Btn');
             timer.Stop();
             $('.record-btn').css({'background-image': 'unset'})
+            $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
             audio_context.close().then(function(s) {
