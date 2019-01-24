@@ -1361,12 +1361,12 @@ $(document).ready(function () {
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
         txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds;
-        $recordbtntext.text(i18next.t('user.pause') + txtTimer);
+        $('.record-btn-text').text(i18next.t('user.pause') + txtTimer);
         //console.log("txtTimer: ", txtTimer);
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
-        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
+        //$('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
         
           };
     
