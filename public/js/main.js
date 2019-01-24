@@ -1364,8 +1364,8 @@ $(document).ready(function () {
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
         txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds;
-        test = txtTimer;
-        //updateTxt();
+        $('button.record-btn').append(`<br><small class="record-btn-text count-time"></small>`);
+        $('small.count-time').text(txtTimer);
         //$('.record-btn-text').text(i18next.t('user.pause') + txtTimer);
         //console.log("txtTimer: ", txtTimer);
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
@@ -1408,15 +1408,12 @@ $(document).ready(function () {
 }
     
         
-    var timer;// = new CountDown();
+    var timer;
     
     function stopRecord() {
             $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
      }
-    console.log('timer: ',test);
-    /*function updateTxt() {
-        
-    }*/
+    
     function startRecord() {
         var $level = $("input.level").slider({
                 value: 50,
@@ -1439,6 +1436,7 @@ $(document).ready(function () {
             console.log('Remove record Btn');
             
             timer.Stop();
+            $('small.count-time').text('');
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
@@ -1467,7 +1465,7 @@ $(document).ready(function () {
         
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
-                console.log('audioContext Closed');
+                console.log('audioContext Closed || NAN');
                 timer = new CountDown();
                 timer.Start(1000*60);
                 getMicPermission();}
@@ -1484,14 +1482,11 @@ $(document).ready(function () {
                 if (audio_context) {
                   if (audio_context.state != "closed") {ctxx(audio_context,"start");} 
                 }
-                console.log("txtTimer: ", timer.txtTimer);
-               // $('.record-btn').css({'background-image': ''})
-                //$recordbtn.css({'background-color':'#000'});
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.pause') + timer.Counter());
+                $recordbtntext.text(i18next.t('user.pause'));
                 recorder && recorder.record();
                 sound.pause();
                 ga('send', {
@@ -1517,7 +1512,6 @@ $(document).ready(function () {
                 recorder && recorder.stop();
                 recorder && recorder.exportAudio(function (blob) {
                     var url = URL.createObjectURL(blob);
-                    //console.log('original ....',url);
                     bloby = url;
                     blobobj = blob;
                     $('audio').attr("src", url);
