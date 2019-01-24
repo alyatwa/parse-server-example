@@ -1396,6 +1396,7 @@ $(document).ready(function () {
         Pause: Pause,
         Resume: Resume,
         Stop: Stop,
+        txtTimer:txtTimer,
         Start: Start
     };
 }
