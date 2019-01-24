@@ -1409,7 +1409,8 @@ $(document).ready(function () {
     var timer;
     
     function stopRecord() {
-            $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
+        $recordbtntext.text('END');
+            //$('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
      }
     
     function startRecord() {
