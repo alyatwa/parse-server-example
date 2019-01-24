@@ -1462,7 +1462,7 @@ $(document).ready(function () {
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('audioContext Closed || NAN');
-                $('button.record-btn').append(`<br><small class="record-btn-text count-time"></small>`);
+                $('button.record-btn').append(`<span class="count-time"><br><small class="record-btn-text count-time"></small></span>`);
                 timer = new CountDown();
                 timer.Start(1000*60);
                 getMicPermission();}
