@@ -1483,7 +1483,7 @@ $(document).ready(function () {
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.pause') + timer.Counter);
+                $recordbtntext.text(i18next.t('user.pause') + timer.Counter();
                 recorder && recorder.record();
                 sound.pause();
                 ga('send', {
@@ -1505,7 +1505,7 @@ $(document).ready(function () {
                 $recordbtn.css({'background-color':'unset'});
                 //$recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.continue')+timer.Counter);
+                $recordbtntext.text(i18next.t('user.continue')+timer.Counter());
                 recorder && recorder.stop();
                 recorder && recorder.exportAudio(function (blob) {
                     var url = URL.createObjectURL(blob);
