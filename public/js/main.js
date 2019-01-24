@@ -1338,11 +1338,12 @@ $(document).ready(function () {
     var Running = true;
     
     var UpdateTimer = function() {
+        
         if (Stopp) {
-            
             $('.record-btn').css({'background-image': 'unset'});
         return;
         }
+        
         // Run till timeout
         if( CurrentTime + TimeGap < EndTime ) {
             setTimeout( UpdateTimer, TimeGap );
@@ -1369,6 +1370,9 @@ $(document).ready(function () {
         //$('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
         
           };
+    var Counter = function() {
+        return txtTimer;
+    };
     
     var Pause = function() {
         Running = false;
@@ -1394,7 +1398,7 @@ $(document).ready(function () {
         Pause: Pause,
         Resume: Resume,
         Stop: Stop,
-        txtTimer:txtTimer,
+        Counter: Counter,
         Start: Start
     };
 }
@@ -1474,12 +1478,12 @@ $(document).ready(function () {
                 }
                 console.log("txtTimer: ", timer.txtTimer);
                // $('.record-btn').css({'background-image': ''})
-                $recordbtn.css({'background-color':'#000'});
+                //$recordbtn.css({'background-color':'#000'});
                 $recordbtn.attr('data-recording', true);
                 $recordbtn.addClass("recording");
                 $recordbtntext.addClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.pause') + timer.txtTimer);
+                $recordbtntext.text(i18next.t('user.pause') + timer.Counter);
                 recorder && recorder.record();
                 sound.pause();
                 ga('send', {
@@ -1501,7 +1505,7 @@ $(document).ready(function () {
                 $recordbtn.css({'background-color':'unset'});
                 //$recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.continue')+timer.txtTimer);
+                $recordbtntext.text(i18next.t('user.continue')+timer.Counter);
                 recorder && recorder.stop();
                 recorder && recorder.exportAudio(function (blob) {
                     var url = URL.createObjectURL(blob);
@@ -1523,13 +1527,12 @@ $(document).ready(function () {
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
       timer.Pause();
-      console.log("txtTimer: ", timer.txtTimer);
+      
     audioCtx.suspend().then(function() {
       console.log('paused context');
     });
   } else if(state === 'start') {
       timer.Resume();
-      console.log("txtTimer: ", timer.txtTimer);
     audioCtx.resume().then(function() {
       console.log('resumed context');
     });  
