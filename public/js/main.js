@@ -1472,7 +1472,7 @@ $(document).ready(function () {
                 if (audio_context) {
                   if (audio_context.state != "closed") {ctxx(audio_context,"start");} 
                 }
-                console.log("txtTimer: ", txtTimer);
+                console.log("txtTimer: ", timer.txtTimer);
                // $('.record-btn').css({'background-image': ''})
                 $recordbtn.css({'background-color':'#000'});
                 $recordbtn.attr('data-recording', true);
@@ -1523,13 +1523,13 @@ $(document).ready(function () {
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
       timer.Pause();
-      console.log("txtTimer: ", txtTimer);
+      console.log("txtTimer: ", timer.txtTimer);
     audioCtx.suspend().then(function() {
       console.log('paused context');
     });
   } else if(state === 'start') {
       timer.Resume();
-      console.log("txtTimer: ", txtTimer);
+      console.log("txtTimer: ", timer.txtTimer);
     audioCtx.resume().then(function() {
       console.log('resumed context');
     });  
