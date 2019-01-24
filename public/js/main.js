@@ -1361,7 +1361,7 @@ $(document).ready(function () {
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
         txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds;
-        $('.record-btn-text').text(i18next.t('user.pause') + txtTimer);
+        //$('.record-btn-text').text(i18next.t('user.pause') + txtTimer);
         //console.log("txtTimer: ", txtTimer);
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
@@ -1472,6 +1472,7 @@ $(document).ready(function () {
                 if (audio_context) {
                   if (audio_context.state != "closed") {ctxx(audio_context,"start");} 
                 }
+                console.log("txtTimer: ", txtTimer);
                // $('.record-btn').css({'background-image': ''})
                 $recordbtn.css({'background-color':'#000'});
                 $recordbtn.attr('data-recording', true);
@@ -1521,12 +1522,14 @@ $(document).ready(function () {
         });
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
-      timer.Pause()
+      timer.Pause();
+      console.log("txtTimer: ", txtTimer);
     audioCtx.suspend().then(function() {
       console.log('paused context');
     });
   } else if(state === 'start') {
       timer.Resume();
+      console.log("txtTimer: ", txtTimer);
     audioCtx.resume().then(function() {
       console.log('resumed context');
     });  
