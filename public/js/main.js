@@ -1369,8 +1369,12 @@ $(document).ready(function () {
     
     var Resume = function() {
         Running = true;
-        /*GuiPause.show();
-        GuiResume.hide();*/
+    };
+    
+    var Stop = function() {
+        Running = false;
+        UpdateTimer = undefined;
+        $('.record-btn').css({'background-image': 'unset'});
     };
     
     var Start = function( Timeout ) {
@@ -1383,12 +1387,13 @@ $(document).ready(function () {
     return {
         Pause: Pause,
         Resume: Resume,
+        Stop: Stop,
         Start: Start
     };
 }
     
         
-    var timer;
+    var timer = new CountDown();
     
     function stopRecord() {
             $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
@@ -1413,7 +1418,7 @@ $(document).ready(function () {
         //Clear Record & Close AudioContext
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
-            timer = undefined;
+            timer.Stop();
             $('.record-btn').css({'background-image': 'unset'})
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
@@ -1443,7 +1448,6 @@ $(document).ready(function () {
         $recordbtn.on('click', function (e) {
             if (!audio_context || audio_context.state === "closed"){
                 console.log('!audio_context',audio_context);
-                timer = new CountDown();
                 timer.Start(1000*60);
                 getMicPermission();}
             else {
@@ -2056,7 +2060,7 @@ $(document).ready(function () {
 });
 
 
-//credits https://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
+
 jQuery.fn.putCursorAtEnd = function () {
     return this.each(function () {
         // If this function exists...
