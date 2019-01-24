@@ -1433,7 +1433,7 @@ $(document).ready(function () {
         $removebtn.on('click', function (e) {
             console.log('Remove record Btn');
             timer.Stop();
-            $('small.count-time').text('');
+            $('small.count-time').remove();
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
@@ -1504,7 +1504,7 @@ $(document).ready(function () {
                 $recordbtn.css({'background-color':'unset'});
                 //$recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
-                $recordbtntext.text(i18next.t('user.continue')+timer.Counter());
+                $recordbtntext.text(i18next.t('user.continue'));
                 recorder && recorder.stop();
                 recorder && recorder.exportAudio(function (blob) {
                     var url = URL.createObjectURL(blob);
