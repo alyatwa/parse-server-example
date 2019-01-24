@@ -1325,18 +1325,21 @@ $(document).ready(function () {
         console.log('Recorder initialised   + audioCTX  ',audio_context);
     }
         //Timer
-        var CountDown = function () {
+    var CountDown = function () {
     // Length ms 
     var TimeOut = 10000;
     // Interval ms
     var TimeGap = 1000;
-    
+    var Stopp = false;
     var CurrentTime = ( new Date() ).getTime();
     var EndTime = ( new Date() ).getTime() + TimeOut;
     
     var Running = true;
     
     var UpdateTimer = function() {
+        if (Stopp) {
+        return;
+        }
         // Run till timeout
         if( CurrentTime + TimeGap < EndTime ) {
             setTimeout( UpdateTimer, TimeGap );
@@ -1373,6 +1376,7 @@ $(document).ready(function () {
     
     var Stop = function() {
         Running = false;
+        Stopp = true;
         //UpdateTimer = undefined;
         $('.record-btn').css({'background-image': 'unset'});
     };
