@@ -1333,13 +1333,13 @@ $(document).ready(function () {
     var Stopp = false;
     var CurrentTime = ( new Date() ).getTime();
     var EndTime = ( new Date() ).getTime() + TimeOut;
-        var txtTimer;
+        var txtTimer = '';
     
     var Running = true;
     
     var UpdateTimer = function() {
         if (Stopp) {
-            console.log("stop: ", Stopp,"    run: ", Running);
+            
             $('.record-btn').css({'background-image': 'unset'});
         return;
         }
@@ -1360,7 +1360,8 @@ $(document).ready(function () {
         Time.setTime( EndTime - CurrentTime );
         var Minutes = Time.getMinutes();
         var Seconds = Time.getSeconds();
-        txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds
+        txtTimer = ' '+(Minutes < 10 ? '0' : '') + Minutes + ':' + (Seconds < 10 ? '0' : '') + Seconds;
+        console.log("txtTimer: ", txtTimer);
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
