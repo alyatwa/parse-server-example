@@ -1442,7 +1442,7 @@ $(document).ready(function () {
             timer.Stop();
             $('span.count-time').remove();
             $('.record-btn').css({'pointer-events': 'unset',
-                              'opacity': 'unset,
+                              'opacity': 'unset',
                               'background-image': 'unset'});
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
