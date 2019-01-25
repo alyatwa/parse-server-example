@@ -25,6 +25,7 @@ var api = new ParseServer({
    liveQuery: {
     classNames: ['_User']
   },
+  maxUploadSize: process.env.maxUploadSize || "15mb",
   // The public URL of your app.
   // This will appear in the link that is used to verify email addresses and reset passwords.
   // Set the mount path as it is in serverURL
