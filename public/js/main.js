@@ -1411,7 +1411,8 @@ $(document).ready(function () {
         $('small.count-time').text('00:00');
         $('.record-btn').css({'pointer-events': 'none',
                               'opacity': .7,
-                              'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
+                              'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'
+                             });
         playRecord();
      }
 
@@ -1459,11 +1460,9 @@ $(document).ready(function () {
                 'opacity': .7
             });
             recorder.clear();
-            
-            /*navigator.getUserMedia(constraints, startUserMedia, function (e) {
-                console.warn('No live audio input: ' + e);
-            });*/
+
         });
+
         $recordbtn.on('click', function (e) {
             $recordbtn.css({'background-color':'unset','white-space': 'inherit'});
             if (!audio_context || audio_context.state === "closed"){
@@ -1516,38 +1515,24 @@ $(document).ready(function () {
             }
         });
         
-        function playRecord() {
-        $(".record-box").css({
-                    'pointer-events': 'unset',
-                    'opacity': 1
-                });
-        $('.record-btn').attr('data-recording', false);
-        $('.record-btn').removeClass("recording");
-                recorder && recorder.stop();
-                recorder && recorder.exportAudio(function (blob) {
-                    var url = URL.createObjectURL(blob);
-                    bloby = url;
-                    blobobj = blob;
-                    $('audio').attr("src", url);
-                    sound.play();
-                });
-    }
+        
         
         function ctxx(audioCtx,state) {
-  if(state === 'pause') {
-      timer.Pause();
+             if(state === 'pause') {
+                 timer.Pause();
       
-    audioCtx.suspend().then(function() {
-      console.log('paused context');
-    });
-  } else if(state === 'start') {
-      timer.Resume();
-    audioCtx.resume().then(function() {
-      console.log('resumed context');
-    });  
-  }
-}
-        $sendbtn.on('click', function (e) {
+              audioCtx.suspend().then(function() {
+               console.log('paused context');
+               });
+              } else if(state === 'start') {
+               timer.Resume();
+             audioCtx.resume().then(function() {
+             console.log('resumed context');
+              });  
+               }
+         }
+
+    $sendbtn.on('click', function (e) {
             console.log('send');
             sound.pause();
             $box.css({
@@ -1573,8 +1558,8 @@ $(document).ready(function () {
                     sendBlob(blob);
                 });
             })();
-        });
-        $('audio').mediaelementplayer({
+            });
+           $('audio').mediaelementplayer({
             success: function (media, node, instance) {
                 sound = document.querySelector("audio");
                 media.addEventListener('progress', function (e) {
@@ -1601,6 +1586,23 @@ $(document).ready(function () {
         });
 
     }
+
+    function playRecord() {
+            $(".record-box").css({
+                    'pointer-events': 'unset',
+                    'opacity': 1
+                });
+            $('.record-btn').attr('data-recording', false);
+            $('.record-btn').removeClass("recording");
+                recorder && recorder.stop();
+                recorder && recorder.exportAudio(function (blob) {
+                    var url = URL.createObjectURL(blob);
+                    bloby = url;
+                    blobobj = blob;
+                    $('audio').attr("src", url);
+                    sound.play();
+                });
+        }
     
     function closeContext() {
             if (audio_context) {
