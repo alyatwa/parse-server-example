@@ -1616,6 +1616,7 @@ $(document).ready(function () {
     
     function closeContext() {
             if (audio_context) {
+            location.reload();
             audio_context.close().then(function(s) {
             console.log('Context Closed');
                 });
