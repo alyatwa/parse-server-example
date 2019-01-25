@@ -988,18 +988,14 @@ $(document).ready(function () {
             });   
             MicApp.fn.checkLogin('notRequired');
             var query = new Parse.Query('PublicUser');
-                var appd = new Parse.Query("App");
-                Parse.Promise.when(query.equalTo("username", user).first(),appd.find())
-                .then(function(res1, res2){
-                    console.log('res1: ', res1.get('img')._url, '   res2:  ', res2[0].get('length'))
-    // process res1, res2, res3
-}, function(e){
-    // handle error
-})
-
-
-            query.equalTo("username", user); // find users that match
-            query.first({
+            var appd = new Parse.Query("App");
+                var length = 0;
+                Parse.Promise.when(
+               appd.find({
+                          success: function (e) {
+                          length = e.get('length')
+                      }}),
+                query.equalTo("username", user).first({
                 success: function (e) {
                     //getMicPermission();
                     if (e) {
@@ -1028,14 +1024,29 @@ $(document).ready(function () {
                             $container: MicApp.$conty
                         });
                         
-                        startRecord();
+                        startRecord(length);
                     } else {
                         console.log('No user found');
                         MicApp.fn.setPageType('home');
                         return;
                     }
                 }
-            });
+            }));
+
+
+
+
+                /*.then(function(res1, res2){
+                    console.log('res1: ', res1.get('img')._url, '   res2:  ', res2.get('length'))
+                           // process res1, res2, res3
+                     }, function(e){
+                          // handle error
+                          console.log(e);
+                     })*/
+
+
+            query.equalTo("username", user); // find users that match
+            query.first();
             ga('send', 'pageview', {
                 'page': '/#/user',
                 'title': 'User'
