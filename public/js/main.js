@@ -1543,13 +1543,7 @@ $(document).ready(function () {
             }
         });
         
-        function closeContext() {
-            if (audio_context) {
-            audio_context.close().then(function(s) {
-            console.log('Context Closed');
-                });
-            }
-        }
+        
         
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
@@ -1619,7 +1613,14 @@ $(document).ready(function () {
         });
 
     }
-
+    
+    function closeContext() {
+            if (audio_context) {
+            audio_context.close().then(function(s) {
+            console.log('Context Closed');
+                });
+            }
+        }
     function sendBlob(blob) {
 
         var receiver = $('.user-box').attr('data-username');
