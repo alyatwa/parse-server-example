@@ -1,6 +1,36 @@
 # parse-server-example
 
-# setup both parse server & dashboard on ONE app heroku  
+# setup both parse server & dashboard on ONE app heroku  2019
+
+```
+myclientKey=myclientKey
+SENDGRID_API_KEY=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
+appName=microphone
+APP_ID=myAppId
+NODE_HOME=/app/.heroku/node
+SERVER_URL=https://moklma.herokuapp.com/parse
+NODE_ENV=production
+WEB_MEMORY=512
+DYNO=run.5738
+fromAddress=ali.atwa2040@gmail.com
+PWD=/app
+LINES=25
+HOME=/app
+DATABASE_URI=mongodb://aliatwa:159951ali@ds161024.mlab.com:61024/moklma
+PARSE_MOUNT=/parse
+PORT=58214
+MEMORY_AVAILABLE=512
+APP_NAME=microphone
+PARSE_DASHBOARD_ADMIN_PASSWORD=159951
+COLUMNS=260
+MASTER_KEY=myMasterKey
+WEB_CONCURRENCY=1
+SHLVL=1
+PARSE_DASHBOARD_MOUNT=/dash
+PATH=/app/.heroku/node/bin:/app/.heroku/yarn/bin:/usr/local/bin:/usr/bin:/bin:/app/bin:/app/node_modules/.bin
+PS1=\[\033[01;34m\]\w\[\033[00m\] \[\033[01;32m\]$ \[\033[00m\]
+PARSE_DASHBOARD_ADMIN_USERNAME=aliatwa
+```
 
 Example project using the [parse-server](https://github.com/ParsePlatform/parse-server) module on Express.
 
