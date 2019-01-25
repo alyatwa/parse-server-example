@@ -1409,7 +1409,8 @@ $(document).ready(function () {
     var timer;
     
     function stopRecord() {
-        $recordbtntext.text('END');
+        $('small.record-btn-text').text('END');
+        $('small.count-time').text('00:00');
         $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'})
      }
     
