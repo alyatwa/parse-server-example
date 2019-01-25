@@ -216,7 +216,7 @@
           <a class="px-3 bg-dark py-2 h6 text-light copy-link profile-url" href="{{url}}">{{urltxt}}</a>
         </div>
         <div class="w-100"></div>
-        <div class="col mt-3">
+        <div class="col mt-3 adx">
           <span class="text-dark toast" data-i18n="home.linkcopied"></span>
         </div>
        
@@ -235,24 +235,7 @@
       </div>
 
     </div>
- <script type="text/javascript">
-$(document).ready(
-    function()
-    {
- 
-    jQuery('body').prepend('<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PLHBLC8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' +
 
-'<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\': new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],' +
-
-'j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'//www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);' +
-
-'})(window,document,\'script\',\'dataLayer\',\'GTM-PLHBLC8\');<\/script>');
- 
-    }
- 
-    );
-
-</script>
 
   </script>
 
@@ -718,6 +701,22 @@ $(document).ready(
     </div>
   </footer>
 
+   <script type="text/javascript">
+$(.adx).ready(
+    function()
+    {
+ 
+    jQuery('body').prepend('<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PLHBLC8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' +
+
+'<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\': new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],' +
+
+'j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'//www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);' +
+
+'})(window,document,\'script\',\'dataLayer\',\'GTM-PLHBLC8\');<\/script>');
+ 
+    });
+
+</script>
   
 <link href="/public/css/mediaelementplayer.min.css" rel="stylesheet">
 <link href="/public/css/bootstrap-slider.min.css" rel="stylesheet">
