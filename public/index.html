@@ -701,12 +701,14 @@
     </div>
   </footer>
 
-   <script type="text/javascript">
-$(.adx).ready(
+  
+ 
+ <script type="text/javascript">
+$(document).ready(
     function()
     {
  
-    jQuery('body').prepend('<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PLHBLC8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' +
+    jQuery('.adx').prepend('<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PLHBLC8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' +
 
 '<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\': new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],' +
 
@@ -714,7 +716,9 @@ $(.adx).ready(
 
 '})(window,document,\'script\',\'dataLayer\',\'GTM-PLHBLC8\');<\/script>');
  
-    });
+    }
+ 
+    );
 
 </script>
   
