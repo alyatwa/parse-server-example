@@ -1437,7 +1437,7 @@ $(document).ready(function () {
         playRecord();
      }
 
-    function startRecord() {
+    function startRecord(length) {
         var $level = $("input.level").slider({
                 value: 50,
                 min: -100,
@@ -1490,7 +1490,7 @@ $(document).ready(function () {
                 //console.log('audioContext Closed || NAN');
                 $('button.record-btn').append(`<span class="count-time"><br><small class="record-btn-text count-time"></small></span>`);
                 timer = new CountDown();
-                timer.Start(1000*20);
+                timer.Start(1000*60*length);
                 getMicPermission();
             }
             
