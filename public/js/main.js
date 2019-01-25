@@ -1322,7 +1322,7 @@ $(document).ready(function () {
         mediaRecorder = stream;
         recorder = new Recorder(input);
         recorder.record();
-        console.log('Recorder initialised   + audioCTX  ',audio_context);
+        //console.log('Recorder initialised   + audioCTX  ',audio_context);
     }
     
     var test='';
@@ -1411,7 +1411,10 @@ $(document).ready(function () {
     function stopRecord() {
         $('small.record-btn-text').text('END');
         $('small.count-time').text('00:00');
-        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'})
+        $('.record-btn').css({'pointer-events': 'none',
+                              'opacity': .7,
+                              'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
+       
      }
     
     function startRecord() {
