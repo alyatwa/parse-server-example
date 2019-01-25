@@ -1003,12 +1003,12 @@ $(document).ready(function () {
                             img: img,
                             id: e.get('userId')
                         }
-                        console.log(data);
+                        
                         setHeadTags('user', {
                             username: e.get('username'),
                             img: e.get('img')._url
                         });
-                        console.log(e.get('img')._url,e.get('username'));
+                        
                         MicApp.fn.renderView({
                             View: MicApp.Views.User,
                             data: {
@@ -1317,7 +1317,7 @@ $(document).ready(function () {
 
     function startUserMedia(stream) {
         audio_context = new AudioContext();
-        console.log('Using audio mic: ' + stream.getAudioTracks()[0].label);
+        //console.log('Using audio mic: ' + stream.getAudioTracks()[0].label);
         var input = audio_context.createMediaStreamSource(stream);
         mediaRecorder = stream;
         recorder = new Recorder(input);
@@ -1460,15 +1460,14 @@ $(document).ready(function () {
             });*/
         });
         $recordbtn.on('click', function (e) {
+            $recordbtn.css({'background-color':'unset','white-space': 'inherit'});
             if (!audio_context || audio_context.state === "closed"){
-                console.log('audioContext Closed || NAN');
+                //console.log('audioContext Closed || NAN');
                 $('button.record-btn').append(`<span class="count-time"><br><small class="record-btn-text count-time"></small></span>`);
                 timer = new CountDown();
                 timer.Start(1000*60);
-                getMicPermission();}
-            else {
-                console.log('else',audio_context);
-                }
+                getMicPermission();
+            }
             
             if ($recordbtn.attr('data-recording') == 'false') {
                 // Start Recording .....
@@ -1502,7 +1501,7 @@ $(document).ready(function () {
                 $recordbtn.attr('data-recording', false);
                 $recordbtn.addClass("btn-paused");
                 $recordbtn.removeClass("recording");
-                $recordbtn.css({'background-color':'unset','white-space': 'inherit'});
+                //$recordbtn.css({'background-color':'unset','white-space': 'inherit'});
                 //$recordbtntext.removeClass("record-btn-text");
                 $recordbtntext.removeClass("text-sub");
                 $recordbtntext.text(i18next.t('user.continue'));
