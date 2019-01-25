@@ -1387,6 +1387,7 @@ $(document).ready(function () {
     var Stop = function() {
         Running = false;
         Stopp = true;
+        $recordbtn.css({'background-color':'#000'});
     };
     
     var Start = function( Timeout ) {
@@ -1440,6 +1441,9 @@ $(document).ready(function () {
             console.log('Remove record Btn');
             timer.Stop();
             $('span.count-time').remove();
+            $('.record-btn').css({'pointer-events': 'unset',
+                              'opacity': 'unset,
+                              'background-image': 'unset'});
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
