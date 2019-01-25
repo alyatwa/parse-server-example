@@ -991,7 +991,7 @@ $(document).ready(function () {
                 var appd = new Parse.Query("App");
                 Parse.Promise.when(query.equalTo("username", user).first(),appd.find())
                 .then(function(res1, res2){
-                    console.log('res1: ', res1.get('img')._url, '   res2:  ', res2.get('length'))
+                    console.log('res1: ', res1.get('img')._url, '   res2:  ', res2[0].get('length'))
     // process res1, res2, res3
 }, function(e){
     // handle error
