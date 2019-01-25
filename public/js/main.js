@@ -722,7 +722,7 @@ $(document).ready(function () {
     Backbone.history.on("route", function () {
         $('.navbar-collapse').collapse('hide');
         $("body").localize();
-        console.log('Backbone.history');
+        closeContext();
     });
 
     // Check login 
@@ -1370,7 +1370,7 @@ $(document).ready(function () {
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
-        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, #adf94a 0%)'})
+        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, #adf94a 0%)'});
         
           };
     
@@ -1428,7 +1428,6 @@ $(document).ready(function () {
                     sound.play();
 
                 });
-       
      }
     
     function startRecord() {
@@ -1461,7 +1460,7 @@ $(document).ready(function () {
             $recordbtntext.addClass("text-sub");
             
             audio_context.close().then(function(s) {
-            console.log('Context Removed', s);
+            console.log('Context Closed');
                 });
             
             $('audio').attr("src", "/public/assets/sample.mp3");
@@ -1543,6 +1542,15 @@ $(document).ready(function () {
                 });
             }
         });
+        
+        function closeContext() {
+            if (audio_context) {
+            audio_context.close().then(function(s) {
+            console.log('Context Closed');
+                });
+            }
+        }
+        
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
       timer.Pause();
@@ -1734,7 +1742,7 @@ $(document).ready(function () {
         });
         subscription.on('update', function (obj) {
             Parse.User.current().fetch();
-            console.log('update', obj.attributes); //and here not working
+            //console.log('update', obj.attributes); //and here not working
             var ele = $('.badge-data');
             var newmsgs = obj.get('new');
             $('.newmsgs').text(newmsgs);
