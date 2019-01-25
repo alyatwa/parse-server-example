@@ -722,6 +722,7 @@ $(document).ready(function () {
     Backbone.history.on("route", function () {
         $('.navbar-collapse').collapse('hide');
         $("body").localize();
+        console.log('Backbone.history');
     });
 
     // Check login 
@@ -1453,8 +1454,8 @@ $(document).ready(function () {
             timer.Stop();
             $('span.count-time').remove();
             $('.record-btn').css({'pointer-events': 'unset',
-                              'opacity': 'unset',
-                              'background-image': 'unset'});
+                                  'opacity': 'unset',
+                                  'background-image': 'unset'});
             $recordbtn.css({'background-color':'#000'});
             $recordbtntext.text(i18next.t('user.start'));
             $recordbtntext.addClass("text-sub");
