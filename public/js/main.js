@@ -1418,6 +1418,15 @@ $(document).ready(function () {
         $('.record-btn').css({'pointer-events': 'none',
                               'opacity': .7,
                               'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
+                recorder && recorder.stop();
+                recorder && recorder.exportAudio(function (blob) {
+                    var url = URL.createObjectURL(blob);
+                    bloby = url;
+                    blobobj = blob;
+                    $('audio').attr("src", url);
+                    sound.play();
+
+                });
        
      }
     
