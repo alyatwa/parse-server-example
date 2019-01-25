@@ -1410,11 +1410,12 @@ $(document).ready(function () {
     var timer;
     
     function stopRecord() {
+        $('.record-btn').attr('data-recording', false);
         $('small.record-btn-text').text('END');
         $('small.count-time').text('00:00');
         $('.record-btn').removeClass("recording");
         $('button.btn.btn-circle.record-btn.btn-paused').css({'pointer-events': 'none',
-                              'opacity': .421212,
+                              'opacity': .7,
                               'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
        
      }
@@ -1474,7 +1475,7 @@ $(document).ready(function () {
                 //console.log('audioContext Closed || NAN');
                 $('button.record-btn').append(`<span class="count-time"><br><small class="record-btn-text count-time"></small></span>`);
                 timer = new CountDown();
-                timer.Start(1000*60);
+                timer.Start(1000*20);
                 getMicPermission();
             }
             
