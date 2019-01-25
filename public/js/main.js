@@ -1407,29 +1407,14 @@ $(document).ready(function () {
     var timer;
     
     function stopRecord() {
-        $('.record-btn').attr('data-recording', false);
         $('small.record-btn-text').text('END');
         $('small.count-time').text('00:00');
-        $('.record-btn').removeClass("recording");
-        $(".record-box").css({
-                    'pointer-events': 'unset',
-                    'opacity': 1
-                });
-        
         $('.record-btn').css({'pointer-events': 'none',
                               'opacity': .7,
                               'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
-                recorder && recorder.stop();
-                recorder && recorder.exportAudio(function (blob) {
-                    var url = URL.createObjectURL(blob);
-                    bloby = url;
-                    blobobj = blob;
-                    $('audio').attr("src", url);
-                    sound.play();
-
-                });
+        playRecord();
      }
-    
+
     function startRecord() {
         var $level = $("input.level").slider({
                 value: 50,
@@ -1518,22 +1503,10 @@ $(document).ready(function () {
                     'pointer-events': 'unset',
                     'opacity': 1
                 });
-                $recordbtn.attr('data-recording', false);
                 $recordbtn.addClass("btn-paused");
-                $recordbtn.removeClass("recording");
-                //$recordbtn.css({'background-color':'unset','white-space': 'inherit'});
-                //$recordbtntext.removeClass("record-btn-text");
+                playRecord();
                 $recordbtntext.removeClass("text-sub");
                 $recordbtntext.text(i18next.t('user.continue'));
-                recorder && recorder.stop();
-                recorder && recorder.exportAudio(function (blob) {
-                    var url = URL.createObjectURL(blob);
-                    bloby = url;
-                    blobobj = blob;
-                    $('audio').attr("src", url);
-                    sound.play();
-
-                });
                 ga('send', {
                     hitType: 'event',
                     eventCategory: 'Recording',
@@ -1543,7 +1516,22 @@ $(document).ready(function () {
             }
         });
         
-        
+        function playRecord() {
+        $(".record-box").css({
+                    'pointer-events': 'unset',
+                    'opacity': 1
+                });
+        $('.record-btn').attr('data-recording', false);
+        $('.record-btn').removeClass("recording");
+                recorder && recorder.stop();
+                recorder && recorder.exportAudio(function (blob) {
+                    var url = URL.createObjectURL(blob);
+                    bloby = url;
+                    blobobj = blob;
+                    $('audio').attr("src", url);
+                    sound.play();
+                });
+    }
         
         function ctxx(audioCtx,state) {
   if(state === 'pause') {
