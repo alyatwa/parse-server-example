@@ -1372,9 +1372,6 @@ $(document).ready(function () {
         $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, #adf94a 0%)'})
         
           };
-    var Counter = function() {
-        return txtTimer;
-    };
     
     var Pause = function() {
         Running = false;
@@ -1387,7 +1384,7 @@ $(document).ready(function () {
     var Stop = function() {
         Running = false;
         Stopp = true;
-        $recordbtn.css({'background-color':'#000'});
+        //$recordbtn.css({'background-color':'#000'});
     };
     
     var Start = function( Timeout ) {
@@ -1401,7 +1398,6 @@ $(document).ready(function () {
         Pause: Pause,
         Resume: Resume,
         Stop: Stop,
-        Counter: Counter,
         Start: Start
     };
 }
@@ -1414,7 +1410,12 @@ $(document).ready(function () {
         $('small.record-btn-text').text('END');
         $('small.count-time').text('00:00');
         $('.record-btn').removeClass("recording");
-        $('button.btn.btn-circle.record-btn.btn-paused').css({'pointer-events': 'none',
+        $(".record-box").css({
+                    'pointer-events': 'unset',
+                    'opacity': 1
+                });
+        
+        $('.record-btn').css({'pointer-events': 'none',
                               'opacity': .7,
                               'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
        
