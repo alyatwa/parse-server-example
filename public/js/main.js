@@ -1413,7 +1413,7 @@ $(document).ready(function () {
         $('small.record-btn-text').text('END');
         $('small.count-time').text('00:00');
         $('.record-btn').removeClass("recording");
-        $('.record-btn').css({'pointer-events': 'none',
+        $('button.btn.btn-circle.record-btn.btn-paused').css({'pointer-events': 'none',
                               'opacity': .7,
                               'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'});
        
