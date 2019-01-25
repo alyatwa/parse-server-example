@@ -988,6 +988,16 @@ $(document).ready(function () {
             });   
             MicApp.fn.checkLogin('notRequired');
             var query = new Parse.Query('PublicUser');
+                var appd = new Parse.Query("App");
+                Parse.Promise.when(query.equalTo("username", user).first(),appd.find())
+                .then(function(res1, res2){
+                    console.log('res1: ', res1, '   res2:  ', res2)
+    // process res1, res2, res3
+}, function(e){
+    // handle error
+})
+
+
             query.equalTo("username", user); // find users that match
             query.first({
                 success: function (e) {
