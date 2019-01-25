@@ -1369,7 +1369,7 @@ $(document).ready(function () {
         var curr = Time.getSeconds()+(Time.getMinutes()*60);
         var total = TimeOut/1000;
         var per = Math.floor((curr/total)*100);
-        //$('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, rgba(255,0,0,1) 0%)'})
+        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) '+per+'%, #adf94a 0%)'})
         
           };
     var Counter = function() {
@@ -1410,7 +1410,7 @@ $(document).ready(function () {
     
     function stopRecord() {
         $recordbtntext.text('END');
-            //$('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 0%)'})
+        $('.record-btn').css({'background-image': 'linear-gradient(180deg, rgba(255,255,255,1) 0%, #adf94a 0%)'})
      }
     
     function startRecord() {
