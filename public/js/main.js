@@ -991,7 +991,7 @@ $(document).ready(function () {
             var appd = new Parse.Query("App");
                 var length = 0;
                 Parse.Promise.when(
-               appd.find({
+               appd.first({
                           success: function (e) {
                           length = e.get('length')
                       }}),
