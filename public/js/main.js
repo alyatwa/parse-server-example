@@ -207,7 +207,7 @@ $(document).ready(function () {
             router.start();
         }
     }))({
-        el: $('.home'),
+        el: $('#mainBody'),
 
     });
 
