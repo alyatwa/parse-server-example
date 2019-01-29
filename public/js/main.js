@@ -201,7 +201,7 @@ $(document).ready(function () {
             this.render();
             this.$container = $('.test');
             this.$nav = $('#navbar');
-            this.$conty = $('.home');
+            this.$conty = $('#mainBody');
             this.$navhead = $('.nav-head');
             var router = new this.Router;
             router.start();
