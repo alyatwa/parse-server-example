@@ -97,7 +97,22 @@ app.get( '/recorderWorkerMP3.js', function( req, res ) {
 app.get( '/libmp3lame.js', function( req, res ) {
   res.sendFile(path.join(__dirname, '/public/js/libmp3lame.js'));
 } )
-
+app.get('/manage', function(req, res) {
+       res.redirect(301, '/#/manage');
+       res.end();
+});
+app.get('/records', function(req, res) {
+       res.redirect(301, '/#/records');
+       res.end();
+});
+app.get('/pp', function(req, res) {
+       res.redirect(301, '/#/pp');
+       res.end();
+});
+app.get('/tos', function(req, res) {
+       res.redirect(301, '/#/tos');
+       res.end();
+});
 app.get('/msg/:recordId', function(req, res) {
   let recordId = req.params.recordId;
   let redirectUrl = '/#/msg/'+recordId;
