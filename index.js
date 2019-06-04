@@ -107,8 +107,8 @@ app.get('/msg/:recordId', function(req, res) {
   console.log(userAgent+'  '+JSON.stringify(req.params));
  
    Parse.Cloud.run('getRecord', { recordId: recordId}).then(function(object) {
-        let receiver = object.get('receiver');
          if (bot) {
+           let receiver = object.get('receiver');
              console.log('-----------bot----------');
           res.writeHead(200,{"Content-Type" : "text/html"});
           res.write(setRecordHead(receiver, msgimg, url, recordId));
