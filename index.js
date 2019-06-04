@@ -98,12 +98,33 @@ app.get( '/libmp3lame.js', function( req, res ) {
   res.sendFile(path.join(__dirname, '/public/js/libmp3lame.js'));
 } )
 
-// There will be a test page available on the /test path of your server url
-// Remove this before launching your app
-app.get('/test', function(req, res) {
-  res.sendFile(path.join(__dirname, '/public/test.html'));
+app.get('/msg/:recordId', function(req, res) {
+  let recordId = req.params.recordId;
+  let redirectUrl = '/#/msg/'+recordId;
+  let userAgent = req.headers['user-agent'];
+  let bot = (userAgent.startsWith('facebookexternalhit/1.1') || userAgent === 'Facebot' || userAgent.startsWith('Twitterbot')) ? true : false
+  var url = req.protocol + "://" + req.headers.host;
+  console.log(userAgent+'  '+JSON.stringify(req.params));
+ 
+   Parse.Cloud.run('getRecord', { recordId: recordId}).then(function(object) {
+        let receiver = object.get('receiver');
+         if (bot) {
+             console.log('-----------bot----------');
+          res.writeHead(200,{"Content-Type" : "text/html"});
+          res.write(setRecordHead(receiver, msgimg, url, recordId));
+          res.end();
+         } else {
+             console.log('-----------REAL----------');
+            res.redirect(301, redirectUrl); 
+         }
+   }, function(data) {
+       res.redirect(301, '/');
+       res.end();
+       console.log('cloud err:  ', data);
+   });
+  
+  
 });
-
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
 httpServer.listen(port, function(e) {
